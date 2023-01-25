@@ -1,0 +1,254 @@
+@A1
+
+int range e0/1-2
+channel-group 1 mode active
+channel-protocol lacp
+int port-channel 1
+switchport trunk encap dot1q
+switchport mode trunk
+
+
+int range e0/3 , e1/0
+channel-group 2 mode active
+channel-protocol lacp
+int port-channel 2
+switchport trunk encap dot1q
+switchport mode trunk
+
+@@D1
+
+int range e0/1-2
+channel-group 1 mode active
+channel-protocol lacp
+int port-channel 1
+switchport trunk encap dot1q
+switchport mode trunk
+
+int range e0/3 , e0/0
+channel-group 2 mode active
+channel-protocol lacp
+int port-channel 2
+switchport trunk encap dot1q
+switchport mode trunk
+
+
+int range e1/2 , e1/3
+channel-group 3 mode active
+channel-protocol lacp
+int port-channel 3
+switchport trunk encap dot1q
+switchport mode trunk
+
+
+@@D2
+
+int range e1/2 , e1/3
+channel-group 3 mode active
+channel-protocol lacp
+int port-channel 3
+switchport trunk encap dot1q
+switchport mode trunk
+
+int range e0/3 , e0/0
+channel-group 1 mode active
+channel-protocol lacp
+int port-channel 1
+switchport trunk encap dot1q
+switchport mode trunk
+
+int range e0/1-2
+channel-group 2 mode active
+channel-protocol lacp
+int port-channel 2
+switchport trunk encap dot1q
+switchport mode trunk
+
+@A2
+
+int range e0/1-2
+channel-group 2 mode active
+channel-protocol lacp
+int port-channel 2
+switchport trunk encap dot1q
+switchport mode trunk
+
+
+int range e0/3 , e0/0
+channel-group 1 mode active
+channel-protocol lacp
+int port-channel 1
+switchport trunk encap dot1q
+switchport mode trunk
+========================
+
+@@@D1: PRIMARY GATEWAY:
+CONF T
+
+track 1 int e1/1 line-protocol
+int vlan 20
+glbp 1 ip 10.2.2.3
+glBP 1 PRIORITY 110
+glBP 1 preempt
+glBP 1 weighting track 1 dec 20
+glBP 1 load-balancing weighted
+
+
+
+@@@D2: PRIMARY GATEWAY:
+CONF T
+int vlan 20
+glbp 1 ip 10.2.2.3
+glBP 1 PRIORITY 100
+glBP 1 preempt
+glBP 1 load-balancing weighted
+
+============
+
+@@D1
+
+Router eigrp 100
+no auto-summary
+network 10.2.1.0 0.0.0.255
+network 10.2.2.0 0.0.0.255
+network 10.168.1.128 0.0.0.31
+network 10.1.4.4 0.0.0.3
+end
+
+@@D2
+
+
+Router eigrp 100
+no auto-summary
+network 10.2.1.0 0.0.0.255
+network 10.2.2.0 0.0.0.255
+network 10.168.1.128 0.0.0.31
+network 10.1.4.8 0.0.0.3
+end
+
+@@R4
+
+Router eigrp 100
+no auto-summary
+network 10.1.4.8 0.0.0.3
+network 10.1.4.4 0.0.0.3
+end
+
+=======
+
+@@R4
+conf t
+router ospf 1
+network 10.1.1.8 0.0.0.3 area 34
+end
+
+@@r3
+
+conf t
+router ospf 1
+network 10.1.1.8 0.0.0.3 area 34
+network 10.1.1.4 0.0.0.3 area 0
+end
+
+@@r2
+
+conf t
+router ospf 1
+network 10.1.1.0 0.0.0.3 area 12
+network 10.1.1.4 0.0.0.3 area 0
+end
+
+@@r1
+conf t
+router ospf 1
+network 10.1.1.0 0.0.0.3 area 12
+end
+
+============
+
+@@ R1
+config t
+router bgp 1
+bgp log-neighbor-changes
+neighbor 209.9.9.3 remote-as 3
+neighbor 207.7.7.2 remote-as 2
+neighbor 208.8.8.4 remote-as 45
+network 209.9.9.0 mask 255.255.255.0
+network 207.7.7.0 mask 255.255.255.0
+network 208.8.8.0 mask 255.255.255.0
+network 10.1.1.0 mask 255.255.255.252
+end
+
+@@ISP 1
+
+config t
+router bgp 45
+bgp log-neighbor-changes
+neighbor 45.4.5.5 remote-as 45
+neighbor 24.2.4.2 remote-as 2
+neighbor 208.8.8.1 remote-as 1
+network 44.44.44.44 mask 255.255.255.255
+network 45.4.5.0 mask 255.255.255.0
+network 24.2.4.0 mask 255.255.255.0
+network 208.8.8.0 mask 255.255.255.0
+!pretend to be a real ISP
+NETWORK 0.0.0.0
+ip route 0.0.0.0 0.0.0.0 null 0
+ip route 10.1.1.0 255.255.255.252 208.8.8.1
+end
+
+
+@@ISP 3
+
+
+config t
+router bgp 3
+bgp log-neighbor-changes
+neighbor 35.3.5.5 remote-as 45
+neighbor 32.3.2.2 remote-as 2
+neighbor 209.9.9.1 remote-as 1
+network 33.33.33.33 mask 255.255.255.255
+network 32.3.2.0 mask 255.255.255.0
+network 209.9.9.0 mask 255.255.255.0
+network 35.3.5.0 mask 255.255.255.0
+!pretend to be a real ISP
+NETWORK 0.0.0.0
+ip route 0.0.0.0 0.0.0.0 null 0
+ip route 10.1.1.0 255.255.255.252 209.9.9.1
+end
+
+@@ISP 2
+conf t
+router bgp 2
+bgp log-neighbor-changes
+neighbor 25.2.5.5 remote-as 45
+neighbor 24.2.4.4 remote-as 45
+neighbor 32.3.2.3 remote-as 2
+neighbor 207.7.7.1 remote-as 1
+network 22.22.22.22 mask 255.255.255.255
+network 25.2.5.0 mask 255.255.255.0
+network 24.2.4.0 mask 255.255.255.0
+network 207.7.7.0 mask 255.255.255.0
+network 32.3.2.0 mask 255.255.255.0
+!pretend to be a real ISP
+NETWORK 0.0.0.0
+ip route 0.0.0.0 0.0.0.0 null 0
+ip route 10.1.1.0 255.255.255.252 207.7.7.1
+end
+
+@@ISP 4
+
+config t
+int lo8
+ip add 8.8.8.8 255.255.255.255
+router bgp 45
+bgp log-neighbor-changes
+neighbor 35.3.5.3 remote-as 3
+neighbor 25.2.5.2 remote-as 2
+neighbor 45.4.5.4 remote-as 45
+network 55.55.55.55 mask 255.255.255.255
+network 35.3.5.0 mask 255.255.255.0
+network 25.2.5.0 mask 255.255.255.0
+network 45.4.5.0 mask 255.255.255.0
+!pretend to be a real ISP
+NETWORK 8.8.8.8 mask 255.255.255.255
+end
