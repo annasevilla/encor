@@ -1,0 +1,52 @@
+ap>en
+Password: 
+ap#show run | in SSID
+ap#CONFIG T
+Enter configuration commands, one per line.  End with CNTL/Z.
+ap(config)#dot11 ssid 31-SOLOWifiAnna
+ap(config-ssid)#authentication open
+ap(config-ssid)#authentication key-management WPA
+ap(config-ssid)#WPA-PSK ASCII C1sc0123!
+ap(config-ssid)#guest-mode
+ap(config-ssid)#int Dot11Radio 0
+ap(config-if)#no shut
+ap(config-if)#encryption mode ciphers tkip
+ap(config-if)#ssid 31-SOLOWifiAnna
+ap(config-if)#end
+ap#
+The semaphore timeout period has expired.
+
+
+
+
+
+
+
+Connection timed out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Connection timed out
+
+
+

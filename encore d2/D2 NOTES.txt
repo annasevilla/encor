@@ -1,0 +1,255 @@
+ENCOR ENTERPRISE LAB PART 1
+cBoreswitchUP:
+Conf t
+hostname CboreSWtass
+enable secret pass
+no logging console
+no ip domain-lookup
+alias exec bp sh ip int brief | ex una
+alias exec sc sh run | section
+alias exec cn sh cdp neighbor
+lin con 0
+no login
+exec-timeout 0 0
+line vty 0 14
+password pass
+exec-timeout 0 0
+int vlan 1
+desc MANAGEMENTVLAN
+no shut
+ip add 10.31.1.2 255.255.255.0
+int vlan 10
+desc WIRELESSVLAN
+no shut
+ip add 10.31.10.2 255.255.255.0
+int vlan 50
+desc IPCameraVLAN
+no shut
+ip add 10.31.50.2 255.255.255.0
+int vlan 100
+desc CUCMvoiceVLAN
+no shut
+ip add 10.31.100.2 255.255.255.0
+end
+!!!!!!!!CORE BABA:
+cBoreswitchDOWN:
+Conf t
+hostname CboreSWbaba
+enable secret pass
+no logging console
+no ip domain-lookup
+alias exec bp sh ip int brief | ex una
+alias exec sc sh run | section
+alias exec cn sh cdp neighbor
+lin con 0
+no login
+exec-timeout 0 0
+line vty 0 14
+password pass
+exec-timeout 0 0
+int vlan 1
+desc MANAGEMENTVLAN
+no shut
+ip add 10.31.1.4 255.255.255.0
+int vlan 10
+desc WIRELESSVLAN
+no shut
+ip add 10.31.10.4 255.255.255.0
+int vlan 50
+desc IPCameraVLAN
+no shut
+ip add 10.31.50.4 255.255.255.0
+int vlan 100
+desc CUCMvoiceVLAN
+no shut
+ip add 10.31.100.4 255.255.255.0
+end
+#Creating Wifi Video Voice Vlan
+!TAAS/BABA
+conf t 
+int range fa0/11-12
+switchport trunk enc dot1q
+switchport mode trunk
+do sh int trunk
+conf t
+vtp domain ccnp
+vtp password encor
+vtp mode server
+exit
+!create the 3 vlans: taas
+conf t
+vlan 10
+name WIFI
+vlan 50
+name IPCAMERAVIDEO
+vlan 100
+name VOICEVLAN
+SH VLAN BR
+baba:
+sh vlan br
+
+
+DHCP SERVER FOR 3 VLANS
+BABA:
+conf t
+IP DHCP excluded-address 10.31.1.1 10.31.1.100
+IP DHCP excluded-address 10.31.10.1 10.31.10.100
+IP DHCP excluded-address 10.31.50.1 10.31.50.100
+IP DHCP excluded-address 10.31.100.1 10.31.100.100
+IP DHCP pool VLAN1DATA
+Network 10.31.1.0 255.255.255.0
+default-router 10.31.1.4
+domain-name VLAN1-DATA.COM
+dns-server 10.31.1.10
+option 150 ip 10.31.100.8
+IP DHCP pool VLAN10WIFI
+Network 10.31.10.0 255.255.255.0
+default-router 10.31.10.4
+domain-name VLAN10-WIFI.COM
+dns-server 10.31.1.10
+option 150 ip 10.31.100.8
+IP DHCP pool VLAN50-IPCAMERA
+Network 10.31.50.0 255.255.255.0
+default-router 10.31.50.4
+domain-name VLAN50-IPCAMERA
+dns-server 10.31.1.10
+option 150 ip 10.31.100.8
+IP DHCP pool VLAN100-VOIP
+Network 10.31.100.0 255.255.255.0
+default-router 10.31.100.4
+domain-name VLAN100-VOIP.COM
+dns-server 10.31.1.10
+option 150 ip 10.31.100.8
+
+!lipat ports to correct vlan:
+BABA:
+Conf t 
+int range fa0/2 , fa0/4 , fa0/6
+switchport access vlan 10
+int range fa0/3 , fa0/5 , fa0/7
+switchport access vlan 100
+
+task4: MOST IMPORTANT COMMAND IN L3 SWITCH
+corebaba:
+conf t
+ip routing
+end
+
+SPECIAL TASK5: TWO SYOTA AT THE SAMETIME
+ncpa.cpl
+tunay na lan: remove the gateway 10.31.1.4 (for LAB)
+cmd
+route add 10.31.0.0 mask 255.255.0.0 10.31.1.4
+
+
+@@CUCM
+ CONF T
+ ip route 0.0.0.0 0.0.0.0 10.31.100.4
+end
+ping 10.31.1.4
+ping 10.31.1.10
+OFF the firewall of the server:
+Set-NetFirewallProfile -name public,private,domain -enabled false
+
+TASK 6: AUTONOMOUS WIRELESS CONFIG
+show run | in SSID
+CONFIG T
+dot11 ssid 31-SOLOWifiAnna
+authentication open
+authentication key-management WPA
+WPA-PSK ASCII C1sc0123!
+guest-mode
+int Dot11Radio 0
+no shut
+encryption mode ciphers tkip
+ssid 31-SOLOWifiAnna
+end
+
+***antenna types of CCNPencor***
+1. omindirectional: 360 signal
+- dipole antenna/rubber duckie
+- mesh antenna: 1.5 to 6 dbi/dbm indoor
+-6 to 15 dbi: outdoor
+
+2. semi directional antenna: 180 degrees
+- wall mount and ceiling mount
+
+3. Highly directional Antenna : 5 degrees
+- setup (building to building)
+- solid dish antenna
+
+AP: outputPOWER: 10mw + Antenna = EiRP (effective radiated power)
+Indoor: 1000mw = 1W
+Outdoor: 2000mw = 2W
+SAFE:
+	50mw + 10 dbi
+	RULE: 3dbi = 2x
+		  6dbi = 4x
+		  10dbi = 10x
+	50mw  16dbi = 10 + 3 + 3
+			      10 x 2 x 2 = 40 x 50 = 2000mw
+	10mw + 9dbi = output power:
+	10 x 2 x 2 x 2 = 80
+	
+TASK 7: quality of dervice / QOS
+QOS MONITORING:
+COREBABA: this is to catch/monitor packets
+conf t 
+monitor session 1 source int fa0/3
+monitor session 1 destination int fa0/1
+do sh monitor session 1
+kill voice captures:
+config t
+no monitor session 1
+
+!!! to improve cisco phones qos grade in SWITCH
+CboreSWbaba(config)#int range fa0/5, fa0/7
+CboreSWbaba(config-if-range)#mls qos trust device cisco-phone
+
+!!!!to improve cisco phones qos grade in router
+CUCM-31(config)#int fa0/0
+CUCM-31(config-if)#auto qos VOIP
+
+@@edge configuration
+config t
+   hostname EDGE-31
+   enable secret pass
+   service password-encryption
+   no logging console
+   no ip domain-lookup
+   line console 0
+     password pass
+     login
+     exec-timeout 0 0
+    line vty 0 14
+      password pass
+      login
+      exec-timeout 0 0
+	 line AUX 0
+     password pass
+     login
+     exec-timeout 0 0
+   Int Gi 0/0/0
+     no shutdown
+	 ip add 10.31.31.1 255.255.255.0 
+  Int Gi 0/0/1
+     no shutdown
+	 ip add 200.0.0.31 255.255.255.0 
+	 end
+	 
+@@TASK 8: SITE TO SITE IPSEC VPN
+
+WHAT IS VPN: 1. DATA HASHING  2. DATA ENCRYPTION  3. DATA TUNNELING
+1. HASHING: maintain data integrity/noFake/noResah (https://xorbin.com/tools/sha256-hash-calculator)
+
+@@EDGE:
+CONF T
+USERNAME admin privilege 15 secret password
+
+ASSIGNMENT:
+ 
+1. HOME VPN SET UP
+ https://www.youtube.com/watch?v=zHhVjUPY5jY
+ 
+ 2. CCNP does not require CCNA skills Anymore
+ CCNA : virtualization, switching, basic routing.

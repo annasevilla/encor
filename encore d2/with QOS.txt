@@ -1,0 +1,232 @@
+Password: 
+CUCM-31>en
+Password: 
+CUCM-31#
+CUCM-31#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+CUCM-31(config)#int fa0/0
+CUCM-31(config-if)#auto qos VOIP
+CUCM-31(config-if)#do sh run 
+Building configuration...
+
+
+Current configuration : 5407 bytes
+!
+! Last configuration change at 13:07:03 UTC Mon Jan 2 2006
+! NVRAM config last updated at 13:05:52 UTC Mon Jan 2 2006
+! NVRAM config last updated at 13:05:52 UTC Mon Jan 2 2006
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname CUCM-31
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+enable secret 5 $1$jC16$yZ56vaXSuXPRRSx2GTxmi.
+!
+no aaa new-model
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+crypto pki token default removal timeout 0
+!
+!
+dot11 syslog
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+voice service voip
+ ip address trusted list
+  ipv4 0.0.0.0 0.0.0.0
+ h323
+  call start slow
+!
+!
+!
+!
+!
+voice-card 0
+!
+!
+!
+license udi pid C1861-UC-4FXO-K9 sn FTX140780GH
+!
+!
+!
+class-map match-any AutoQoS-VoIP-Remark
+ match ip dscp ef 
+ match ip dscp cs3 
+ match ip dscp af31 
+class-map match-any AutoQoS-VoIP-Control-UnTrust
+ match access-group name AutoQoS-VoIP-Control
+class-map match-any AutoQoS-VoIP-RTP-UnTrust
+ match protocol rtp audio 
+ match access-group name AutoQoS-VoIP-RTCP
+!
+!
+policy-map AutoQoS-Policy-UnTrust
+ class AutoQoS-VoIP-RTP-UnTrust
+  priority percent 70
+  set dscp ef
+ class AutoQoS-VoIP-Control-UnTrust
+  bandwidth percent 5 
+  set dscp af31
+ class AutoQoS-VoIP-Remark
+  set dscp default
+ class class-default
+  fair-queue
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!         
+!
+interface FastEthernet0/0
+ ip address 10.31.100.8 255.255.255.0
+ duplex auto
+ speed auto
+ auto qos voip 
+ service-policy output AutoQoS-Policy-UnTrust
+!
+interface Integrated-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface FastEthernet0/1/0
+ no ip address
+!
+interface FastEthernet0/1/1
+ no ip address
+!
+interface FastEthernet0/1/2
+ no ip address
+!
+interface FastEthernet0/1/3
+ no ip address
+!         
+interface FastEthernet0/1/4
+ no ip address
+!
+interface FastEthernet0/1/5
+ no ip address
+!
+interface FastEthernet0/1/6
+ no ip address
+!
+interface FastEthernet0/1/7
+ no ip address
+!
+interface FastEthernet0/1/8
+ no ip address
+!
+interface FastEthernet0/2/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/2/1
+ no ip address
+ shutdown 
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip route 0.0.0.0 0.0.0.0 10.31.100.4
+!
+ip access-list extended AutoQoS-VoIP-Control
+ permit tcp any any eq 1720
+ permit tcp any any range 11000 11999
+ permit udp any any eq 2427
+ permit tcp any any eq 2428
+ permit tcp any any range 2000 2002
+ permit udp any any eq 1719
+ permit udp any any eq 5060
+ip access-list extended AutoQoS-VoIP-RTCP
+ permit udp any any range 16384 32767
+!         
+!
+!
+!
+!
+!
+!
+control-plane
+!
+rmon event 33333 log trap AutoQoS description "AutoQoS SNMP traps for Voice Drops" owner AutoQoS
+rmon alarm 33333 cbQosCMDropBitRate.18.14200673 30 absolute rising-threshold 1 33333 falling-threshold 0 owner AutoQoS
+!
+voice-port 0/0/0
+!
+voice-port 0/0/1
+!
+voice-port 0/0/2
+!
+voice-port 0/0/3
+!
+voice-port 0/1/0
+!
+          
+CUCM-31(config-if)#do sh int fa0/0    
+FastEthernet0/0 is up, line protocol is up 
+  Hardware is PQII_PRO_UEC, address is c47d.4ff2.4f80 (bia c47d.4ff2.4f80)
+  Internet address is 10.31.100.8/24
+  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, 100BaseTX/FX
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 1/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: Class-based queueing
+  Output queue: 0/1000/0 (size/max total/drops)
+  5 minute input rate 3000 bits/sec, 3 packets/sec
+  5 minute output rate 2000 bits/sec, 3 packets/sec
+     10134 packets input, 1035420 bytes
+     Received 1395 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog
+     0 input packets with dribble condition detected
+     8478 packets output, 804197 bytes, 0 underruns
+     0 output errors, 0 collisions, 2 interface resets
+     505 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     1 lost carrier, 0 no carrier
+     0 output buffer failures, 0 output buffers swapped out
+CUCM-31(config-if)#

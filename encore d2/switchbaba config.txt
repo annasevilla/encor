@@ -1,0 +1,527 @@
+
+Password: 
+CboreSWbaba>en
+Password: 
+CboreSWbaba#conf t 
+Enter configuration commands, one per line.  End with CNTL/Z.
+CboreSWbaba(config)#int range fa0/11-12
+CboreSWbaba(config-if-range)#switchport trunk enc dot1q
+CboreSWbaba(config-if-range)#switchport mode trunk
+CboreSWbaba(config-if-range)#do sh int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Fa0/11      on               802.1q         trunking      1
+Fa0/12      on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Fa0/11      1-4094
+Fa0/12      1-4094
+
+Port        Vlans allowed and active in management domain
+Fa0/11      1,10,25,100
+Fa0/12      1,10,25,100
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/11      none
+Fa0/12      none
+CboreSWbaba(config-if-range)#ex
+CboreSWbaba(config)#end
+CboreSWbaba#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+CboreSWbaba(config)#vtp domain ccnp
+Domain name already set to ccnp.
+CboreSWbaba(config)#vtp password encor
+Password already set to encor
+CboreSWbaba(config)#vtp mode server
+Device mode already VTP Server for VLANS.
+CboreSWbaba(config)#exit
+CboreSWbaba#
+CboreSWbaba#sh vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4, Fa0/5, Fa0/6, Fa0/7, Fa0/8, Fa0/9, Fa0/10, Gi0/1
+10   WIFI                             active    
+25   DOH.gov.ph                       active    
+50   IPCAMERAVIDEO                    active    
+100  VOICEVLAN                        active    
+1002 fddi-default                     act/unsup 
+1003 trcrf-default                    act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trbrf-default                    act/unsup 
+CboreSWbaba# conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+CboreSWbaba(config)#IP DHCP excluded-address 10.31.1.1 10.31.1.100
+CboreSWbaba(config)#IP DHCP excluded-address 10.31.10.1 10.31.10.100
+CboreSWbaba(config)#IP DHCP excluded-address 10.31.50.1 10.31.50.100
+CboreSWbaba(config)#IP DHCP excluded-address 10.31.100.1 10.31.100.100
+CboreSWbaba(config)#IP DHCP pool VLAN1DATA
+CboreSWbaba(dhcp-config)#Network 10.31.1.0 255.255.255.0
+CboreSWbaba(dhcp-config)#default-router 10.31.1.4
+CboreSWbaba(dhcp-config)#domain-name VLAN1-DATA.COM
+CboreSWbaba(dhcp-config)#dns-server 10.31.1.10
+CboreSWbaba(dhcp-config)#option 150 ip 10.31.100.8
+CboreSWbaba(dhcp-config)#IP DHCP pool VLAN10WIFI
+CboreSWbaba(dhcp-config)#Network 10.31.10.0 255.255.255.0
+CboreSWbaba(dhcp-config)#default-router 10.31.10.4
+CboreSWbaba(dhcp-config)#domain-name VLAN10-WIFI.COM
+CboreSWbaba(dhcp-config)#dns-server 10.31.1.10
+CboreSWbaba(dhcp-config)#option 150 ip 10.31.100.8
+CboreSWbaba(dhcp-config)#IP DHCP pool VLAN50-IPCAMERA
+CboreSWbaba(dhcp-config)#Network 10.31.50.0 255.255.255.0
+CboreSWbaba(dhcp-config)#default-router 10.31.50.4
+CboreSWbaba(dhcp-config)#domain-name VLAN50-IPCAMERA
+CboreSWbaba(dhcp-config)#dns-server 10.31.1.10
+CboreSWbaba(dhcp-config)#option 150 ip 10.31.100.8
+CboreSWbaba(dhcp-config)#IP DHCP pool VLAN100-VOIP
+CboreSWbaba(dhcp-config)#Network 10.31.100.0 255.255.255.0
+CboreSWbaba(dhcp-config)#default-router 10.31.100.4
+CboreSWbaba(dhcp-config)#domain-name VLAN100-VOIP.COM
+CboreSWbaba(dhcp-config)#dns-server 10.31.1.10
+CboreSWbaba(dhcp-config)#option 150 ip 10.31.100.8
+CboreSWbaba(dhcp-config)#
+CboreSWbaba(dhcp-config)#
+CboreSWbaba(dhcp-config)#WR
+                         ^
+% Invalid input detected at '^' marker.
+
+CboreSWbaba(dhcp-config)#end
+CboreSWbaba#wr
+Building configuration...
+[OK]
+CboreSWbaba#cn 
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+ap               Fas 0/6           155             T B I  AIR-SAP26 Gig 0
+SEPCCD8C1FAE015  Fas 0/7           179             H P M  IP Phone  Port 1
+SEPCCD8C1FB0E25  Fas 0/5           134             H P M  IP Phone  Port 1
+CboreSWtass      Fas 0/12          158              S I   WS-C3560- Fas 0/12
+CboreSWtass      Fas 0/11          158              S I   WS-C3560- Fas 0/11
+APf44e.0544.ea8c Fas 0/4           171             T B I  AIR-CAP27 Gig 0
+CboreSWbaba#cn
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+ap               Fas 0/6           141             T B I  AIR-SAP26 Gig 0
+SEPCCD8C1FAE015  Fas 0/7           169             H P M  IP Phone  Port 1
+SEPCCD8C1FB0E25  Fas 0/5           124             H P M  IP Phone  Port 1
+CboreSWtass      Fas 0/12          148              S I   WS-C3560- Fas 0/12
+CboreSWtass      Fas 0/11          148              S I   WS-C3560- Fas 0/11
+APf44e.0544.ea8c Fas 0/4           153             T B I  AIR-CAP27 Gig 0
+CboreSWbaba#cn
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+ap               Fas 0/6           138             T B I  AIR-SAP26 Gig 0
+SEPCCD8C1FAE015  Fas 0/7           166             H P M  IP Phone  Port 1
+SEPCCD8C1FB0E25  Fas 0/5           121             H P M  IP Phone  Port 1
+CboreSWtass      Fas 0/12          144              S I   WS-C3560- Fas 0/12
+CboreSWtass      Fas 0/11          144              S I   WS-C3560- Fas 0/11
+APf44e.0544.ea8c Fas 0/4           150             T B I  AIR-CAP27 Gig 0
+CboreSWbaba#
+CboreSWbaba#
+CboreSWbaba#
+CboreSWbaba#
+CboreSWbaba#
+CboreSWbaba#
+CboreSWbaba#Conf t 
+Enter configuration commands, one per line.  End with CNTL/Z.
+CboreSWbaba(config)#int range fa0/2 , fa0/4 , fa0/6
+CboreSWbaba(config-if-range)#switchport access vlan10
+                                                   ^
+% Invalid input detected at '^' marker.
+
+CboreSWbaba(config-if-range)#int range fa0/3 , fa0/5 , fa0/7
+CboreSWbaba(config-if-range)#ex                       
+CboreSWbaba(config)#int range fa0/2 , fa0/4 , fa0/6
+CboreSWbaba(config-if-range)#switchport access vlan 10
+CboreSWbaba(config-if-range)#int range fa0/3 , fa0/5 , fa0/7
+CboreSWbaba(config-if-range)#switchport access vlan 100
+CboreSWbaba(config-if-range)#ex 
+CboreSWbaba(config)#do sh vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/8, Fa0/9, Fa0/10
+                                                Gi0/1
+10   WIFI                             active    Fa0/2, Fa0/4, Fa0/6
+25   DOH.gov.ph                       active    
+50   IPCAMERAVIDEO                    active    
+100  VOICEVLAN                        active    Fa0/3, Fa0/5, Fa0/7
+1002 fddi-default                     act/unsup 
+1003 trcrf-default                    act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trbrf-default                    act/unsup 
+CboreSWbaba(config)#do sh vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/8, Fa0/9, Fa0/10
+                                                Gi0/1
+10   WIFI                             active    Fa0/2, Fa0/4, Fa0/6
+25   DOH.gov.ph                       active    
+50   IPCAMERAVIDEO                    active    
+100  VOICEVLAN                        active    Fa0/3, Fa0/5, Fa0/7
+1002 fddi-default                     act/unsup 
+1003 trcrf-default                    act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trbrf-default                    act/unsup 
+CboreSWbaba(config)#wr
+                     ^
+% Invalid input detected at '^' marker.
+
+CboreSWbaba(config)#end\
+                       ^
+% Invalid input detected at '^' marker.
+
+CboreSWbaba(config)#end
+CboreSWbaba#wr
+Building configuration...
+[OK]
+CboreSWbaba#sh ip dhcp binding
+Bindings from all pools not associated with VRF:
+IP address          Client-ID/              Lease expiration        Type
+                    Hardware address/
+                    User name
+10.31.1.101         01cc.d8c1.fae0.15       Mar 02 1993 02:31 AM    Automatic
+10.31.1.102         01cc.d8c1.fb0e.25       Mar 02 1993 02:31 AM    Automatic
+10.31.1.103         0046.444f.3232.3136.    Mar 01 1993 03:09 AM    Automatic
+                    4132.3253
+10.31.1.113         01f4.4e05.44ea.8c       Mar 02 1993 02:55 AM    Automatic
+10.31.10.102        01f4.4e05.44ea.8c       Mar 02 1993 03:04 AM    Automatic
+10.31.100.101       01cc.d8c1.fae0.15       Mar 02 1993 03:02 AM    Automatic
+10.31.100.102       01cc.d8c1.fb0e.25       Mar 02 1993 03:01 AM    Automatic
+CboreSWbaba#sh run | sec dhcp
+ip dhcp excluded-address 10.31.1.1 10.31.1.100
+ip dhcp excluded-address 10.31.10.1 10.31.10.100
+ip dhcp excluded-address 10.31.50.1 10.31.50.100
+ip dhcp excluded-address 10.31.100.1 10.31.100.100
+ip dhcp pool VLAN1DATA
+ network 10.31.1.0 255.255.255.0
+ default-router 10.31.1.4 
+ domain-name VLAN1-DATA.COM
+ dns-server 10.31.1.10 
+ option 150 ip 10.31.100.8 
+ip dhcp pool VLAN10WIFI
+ network 10.31.10.0 255.255.255.0
+ default-router 10.31.10.4 
+ domain-name VLAN10-WIFI.COM
+ dns-server 10.31.1.10 
+ option 150 ip 10.31.100.8 
+ip dhcp pool VLAN50-IPCAMERA
+ network 10.31.50.0 255.255.255.0
+ default-router 10.31.50.4 
+ domain-name VLAN50-IPCAMERA
+ dns-server 10.31.1.10 
+ option 150 ip 10.31.100.8 
+ip dhcp pool VLAN100-VOIP
+ network 10.31.100.0 255.255.255.0
+ default-router 10.31.100.4 
+ domain-name VLAN100-VOIP.COM
+ dns-server 10.31.1.10 
+ option 150 ip 10.31.100.8 
+CboreSWbaba# wr
+Building configuration...
+[OK]
+CboreSWbaba#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+CboreSWbaba(config)#ip routing
+CboreSWbaba(config)#end
+CboreSWbaba#
+CboreSWbaba#wr
+Building configuration...
+[OK]
+CboreSWbaba#sh ip dhcp binding
+Bindings from all pools not associated with VRF:
+IP address          Client-ID/              Lease expiration        Type
+                    Hardware address/
+                    User name
+10.31.1.101         01cc.d8c1.fae0.15       Mar 02 1993 02:31 AM    Automatic
+10.31.1.102         01cc.d8c1.fb0e.25       Mar 02 1993 02:31 AM    Automatic
+10.31.1.103         0046.444f.3232.3136.    Mar 01 1993 03:35 AM    Automatic
+                    4132.3253
+10.31.1.113         01f4.4e05.44ea.8c       Mar 02 1993 02:55 AM    Automatic
+10.31.10.107        01f4.4e05.44ea.8c       Mar 02 1993 03:29 AM    Automatic
+10.31.100.101       01cc.d8c1.fae0.15       Mar 02 1993 03:02 AM    Automatic
+10.31.100.102       01cc.d8c1.fb0e.25       Mar 02 1993 03:01 AM    Automatic
+CboreSWbaba# 
+CboreSWbaba#
+CboreSWbaba#
+CboreSWbaba# sh ip dhcp bind
+Bindings from all pools not associated with VRF:
+IP address          Client-ID/              Lease expiration        Type
+                    Hardware address/
+                    User name
+10.31.1.101         01cc.d8c1.fae0.15       Mar 02 1993 02:31 AM    Automatic
+10.31.1.102         01cc.d8c1.fb0e.25       Mar 02 1993 02:31 AM    Automatic
+10.31.1.103         0046.444f.3232.3136.    Mar 01 1993 04:06 AM    Automatic
+                    4132.3253
+10.31.1.113         01f4.4e05.44ea.8c       Mar 02 1993 02:55 AM    Automatic
+10.31.10.113        01f4.4e05.44ea.8c       Mar 02 1993 03:58 AM    Automatic
+10.31.100.101       01cc.d8c1.fae0.15       Mar 02 1993 03:39 AM    Automatic
+10.31.100.102       01cc.d8c1.fb0e.25       Mar 02 1993 03:01 AM    Automatic
+CboreSWbaba# sh run | sec dhcp
+ip dhcp excluded-address 10.31.1.1 10.31.1.100
+ip dhcp excluded-address 10.31.10.1 10.31.10.100
+ip dhcp excluded-address 10.31.50.1 10.31.50.100
+ip dhcp excluded-address 10.31.100.1 10.31.100.100
+ip dhcp pool VLAN1DATA
+ network 10.31.1.0 255.255.255.0
+ default-router 10.31.1.4 
+ domain-name VLAN1-DATA.COM
+ dns-server 10.31.1.10 
+ option 150 ip 10.31.100.8 
+ip dhcp pool VLAN10WIFI
+ network 10.31.10.0 255.255.255.0
+ default-router 10.31.10.4 
+ domain-name VLAN10-WIFI.COM
+ dns-server 10.31.1.10 
+ option 150 ip 10.31.100.8 
+ip dhcp pool VLAN50-IPCAMERA
+ network 10.31.50.0 255.255.255.0
+ default-router 10.31.50.4 
+ domain-name VLAN50-IPCAMERA
+ dns-server 10.31.1.10 
+ option 150 ip 10.31.100.8 
+ip dhcp pool VLAN100-VOIP
+ network 10.31.100.0 255.255.255.0
+ default-router 10.31.100.4 
+ domain-name VLAN100-VOIP.COM
+ dns-server 10.31.1.10 
+ option 150 ip 10.31.100.8 
+CboreSWbaba# sh ip dhcp bind  
+Bindings from all pools not associated with VRF:
+IP address          Client-ID/              Lease expiration        Type
+                    Hardware address/
+                    User name
+10.31.1.101         01cc.d8c1.fae0.15       Mar 02 1993 02:31 AM    Automatic
+10.31.1.102         01cc.d8c1.fb0e.25       Mar 02 1993 02:31 AM    Automatic
+10.31.1.103         0046.444f.3232.3136.    Mar 01 1993 04:36 AM    Automatic
+                    4132.3253
+10.31.1.113         01f4.4e05.44ea.8c       Mar 02 1993 02:55 AM    Automatic
+10.31.10.114        01f4.4e05.44ea.8c       Mar 02 1993 04:03 AM    Automatic
+10.31.10.115        0100.5d73.f585.80       Mar 02 1993 04:10 AM    Automatic
+10.31.10.116        0100.005e.0001.01       Mar 02 1993 04:11 AM    Automatic
+10.31.100.101       01cc.d8c1.fae0.15       Mar 02 1993 03:39 AM    Automatic
+10.31.100.102       01cc.d8c1.fb0e.25       Mar 02 1993 03:01 AM    Automatic
+CboreSWbaba#
+CboreSWbaba#cn               
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+ap               Fas 0/6           149             T B I  AIR-SAP26 Gig 0
+AP005D.73F5.8580 Fas 0/2           178              R T   AIR-AP181 Gig 0
+SEPCCD8C1FAE015  Fas 0/7           155             H P M  IP Phone  Port 1
+SEPCCD8C1FB0E25  Fas 0/5           127             H P M  IP Phone  Port 1
+CboreSWtass      Fas 0/12          171              S I   WS-C3560- Fas 0/12
+CboreSWtass      Fas 0/11          171              S I   WS-C3560- Fas 0/11
+CUCM-31.VLAN1-DATA.COM
+                 Fas 0/3           139             R S I  C1861-UC- Fas 0/0
+CboreSWbaba# conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+CboreSWbaba(config)#router ospf 1
+CboreSWbaba(config-router)#network 0.0.0.0 255.255.255.255 area 0
+CboreSWbaba(config-router)# ex
+CboreSWbaba(config)#int vlan 1 
+CboreSWbaba(config-if)#standby 1 Ip 10.12.1.6
+% Warning: address is not within a subnet on this interface
+CboreSWbaba(config-if)#standby 1 Ip 10.31.1.6
+CboreSWbaba(config-if)#ex
+CboreSWbaba(config)#
+CboreSWbaba(config)#roter rip
+                      ^
+% Invalid input detected at '^' marker.
+
+CboreSWbaba(config)#ver 2
+CboreSWbaba(config)#router rip
+CboreSWbaba(config-router)#ver 2
+CboreSWbaba(config-router)#net 10.0.0.0
+CboreSWbaba(config-router)#exit
+CboreSWbaba(config)#router eigrp
+% Incomplete command.
+
+CboreSWbaba(config)#router eigrp 100
+CboreSWbaba(config-router)#network 10.0.0.0 
+CboreSWbaba(config-router)#no auto- 
+CboreSWbaba(config-router)#no auto-summary 
+CboreSWbaba(config-router)#
+The semaphore timeout period has expired.
+
+
+
+Connection timed out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Connection timed out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Connection timed out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+User Access Verification
+
+Password: 
+Password: 
+CboreSWbaba> 
+CboreSWbaba>
+CboreSWbaba>
+CboreSWbaba>en
+Password: 
+Password: 
+Password: 
+% Bad secrets
+
+CboreSWbaba>en 
+Password: 
+CboreSWbaba#
+CboreSWbaba#mls qos ?
+% Unrecognized command
+CboreSWbaba#conf t  
+Enter configuration commands, one per line.  End with CNTL/Z.
+CboreSWbaba(config)#mls qos ?
+  aggregate-policer  Named aggregate policer
+  map                qos map keyword
+  queue-set          Choose a queue set for this queue
+  rewrite            Rewrite Packet/Frame
+  srr-queue          Configure SRR receive queues
+  <cr>
+
+CboreSWbaba(config)#int range fa0/5, fa0/7
+CboreSWbaba(config-if-range)#mls qos trust devie cisco-phone
+                                               ^
+% Invalid input detected at '^' marker.
+
+CboreSWbaba(config-if-range)#mls qos trust device cisco-phone
+CboreSWbaba(config-if-range)# end
+CboreSWbaba#sh int fa0/11
+FastEthernet0/11 is up, line protocol is up (connected) 
+  Hardware is Fast Ethernet, address is 0817.350e.0e8b (bia 0817.350e.0e8b)
+  MTU 1500 bytes, BW 100000 Kbit/sec, DLY 100 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, media type is 10/100BaseTX
+  input flow-control is off, output flow-control is unsupported 
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:09, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 5000 bits/sec, 6 packets/sec
+     4064 packets input, 447567 bytes, 0 no buffer
+     Received 1408 broadcasts (1363 multicasts)
+     0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 1363 multicast, 0 pause input
+     0 input packets with dribble condition detected
+     89379 packets output, 8965122 bytes, 0 underruns
+     0 output errors, 0 collisions, 1 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+CboreSWbaba#       
+CboreSWbaba#
+CboreSWbaba#
+CboreSWbaba#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+CboreSWbaba(config)#username admin password pass
+CboreSWbaba(config)#aaa new-model
+CboreSWbaba(config)#aaa authentication login def local
+CboreSWbaba(config)#ip http secure-
+CboreSWbaba(config)#ip http secure-se
+CboreSWbaba(config)#ip http secure-server 
+% Generating 1024 bit RSA keys, keys will be non-exportable...
+[OK] (elapsed time was 6 seconds)
+
+CboreSWbaba(config)# int gi0/1
+CboreSWbaba(config-if)#no switchport
+CboreSWbaba(config-if)#ip add 10.31.31.4 255.255.255.0
+CboreSWbaba(config-if)#do ping 10.31.31.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.31.31.1, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/2/8 ms
+CboreSWbaba(config-if)#do ping 10.31.31.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.31.31.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/4/9 ms
+CboreSWbaba(config-if)#ip route 0.0.0.0 0.0.0.0 10.31.31.1
+CboreSWbaba(config)#
+CboreSWbaba(config)#

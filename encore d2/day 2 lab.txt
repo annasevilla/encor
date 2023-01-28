@@ -1,0 +1,56 @@
+
+
+
+
+task 1:
+
+1. GET THE SEED CONFIGS:
+-CMD
+-cd desktop
+mkdir encor2023
+
+2. config
+
+ENCOR ENTERPRISE LAB PART 1
+cBoreswitchUP:
+Conf t
+hostname CboreSWtass
+enable secret pass
+no logging console
+no ip domain-lookup
+alias exec bp sh ip int brief | ex una
+alias exec sc sh run | section
+alias exec cn sh cdp neighbor
+lin con 0
+no login
+exec-timeout 0 0
+line vty 0 14
+password pass
+exec-timeout 0 0
+int vlan 1
+desc MANAGEMENTVLAN
+no shut
+ip add 10.31.1.2 255.255.255.0
+int vlan 10
+desc WIRELESSVLAN
+no shut
+ip add 10.31.10.2 255.255.255.0
+int vlan 50
+desc IPCameraVLAN
+no shut
+ip add 10.31.50.2 255.255.255.0
+int vlan 100
+desc CUCMvoiceVLAN
+no shut
+ip add 10.31.100.2 255.255.255.0
+end
+
+3. ncpa.cpl
+
+ip add 10.m.1.10/24
+dwg:10.31.1.4
+dns server: 127.0.0.1
+
+3. go to https://sandboxdnac.cisco.com/
+devnetuser
+Cisco123!

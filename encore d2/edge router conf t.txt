@@ -1,0 +1,105 @@
+Router>
+Router>
+Router>
+Router>en
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#   hostname EDGE-31
+EDGE-31(config)#   enable secret pass
+EDGE-31(config)#   service password-encryption
+EDGE-31(config)#   no logging console
+EDGE-31(config)#   no ip domain-lookup
+EDGE-31(config)#   line console 0
+EDGE-31(config-line)#     password pass
+EDGE-31(config-line)#     login
+EDGE-31(config-line)#     exec-timeout 0 0
+EDGE-31(config-line)#    line vty 0 14
+EDGE-31(config-line)#      password pass
+EDGE-31(config-line)#      login
+EDGE-31(config-line)#      exec-timeout 0 0
+EDGE-31(config-line)#
+EDGE-31(config-line)# line AUX 0
+EDGE-31(config-line)#     password pass
+EDGE-31(config-line)#     login
+EDGE-31(config-line)#     exec-timeout 0 0
+EDGE-31(config-line)#   Int Gi 0/0/0
+EDGE-31(config-if)#     no shutdown
+EDGE-31(config-if)#
+EDGE-31(config-if)# ip add 10.31.31.1 255.255.255.0 
+EDGE-31(config-if)#
+EDGE-31(config-if)# end
+EDGE-31#  Int Gi 0/0/1
+            ^
+% Invalid input detected at '^' marker.
+
+EDGE-31#     no shutdown
+                ^
+% Invalid input detected at '^' marker.
+
+EDGE-31#
+EDGE-31# ip add 200.0.0.31 255.255.255.0 
+            ^
+% Invalid input detected at '^' marker.
+
+EDGE-31#
+EDGE-31#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+EDGE-31(config)#  Int Gi 0/0/1
+EDGE-31(config-if)#     no shutdown
+EDGE-31(config-if)#
+EDGE-31(config-if)# ip add 200.0.0.31 255.255.255.0 
+EDGE-31(config-if)#ex
+EDGE-31(config)#sh ip int br | ex una
+                    ^
+% Invalid input detected at '^' marker.
+
+EDGE-31(config)#do sh ip int br | ex una 
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   10.31.31.1      YES manual up                    up      
+GigabitEthernet0/0/1   200.0.0.31      YES manual down                  down    
+
+EDGE-31(config)#do sh ip int br | ex una
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0/0   10.31.31.1      YES manual up                    up      
+GigabitEthernet0/0/1   200.0.0.31      YES manual up                    up      
+
+EDGE-31(config)#sh cdp neigh
+                   ^
+% Invalid input detected at '^' marker.
+
+EDGE-31(config)#do sh cdp neigh
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone, 
+                  D - Remote, C - CVTA, M - Two-port Mac Relay 
+
+Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+MetroEthrNtGLOBE Gig 0/0/1         151              S I   WS-C3560- Fas 0/3
+CboreSWbaba      Gig 0/0/0         121             R S I  WS-C3560- Gig 0/1
+
+Total cdp entries displayed : 2
+EDGE-31(config)#ping 200.0.0.31
+                 ^
+% Invalid input detected at '^' marker.
+
+EDGE-31(config)#do ping 200.0.0.32
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 200.0.0.32, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 1/1/2 ms
+EDGE-31(config)#do ping 200.0.0.32
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 200.0.0.32, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+EDGE-31(config)#ip route 10.31.0.0 255.255.0.0 10.31.31.4
+EDGE-31(config)# USERNAME admin privilage 15 secret pass
+                                      ^
+% Invalid input detected at '^' marker.
+
+EDGE-31(config)# USERNAME admin privilege 15 secret pass
+EDGE-31(config)# USERNAME admin privilege 15 secret password
+EDGE-31(config)#
+EDGE-31#
+EDGE-31#
+EDGE-31#
+EDGE-31# 
