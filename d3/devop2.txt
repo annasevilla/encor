@@ -1,0 +1,236 @@
+
+
+User Access Verification
+
+Username: admin
+Password: 
+% Login invalid
+
+Username: admin
+Password: 
+DEVOP2#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DEVOP2(config)#iox
+DEVOP2(config)#interface GigabitEthernet1
+DEVOP2(config-if)#ip address dhcp
+DEVOP2(config-if)#ip nat outside
+DEVOP2(config-if)#no shut
+DEVOP2(config-if)#exit
+DEVOP2(config)#!
+DEVOP2(config)#interface VirtualPortGroup0
+DEVOP2(config-if)#ip address 192.168.35.1 255.255.255.0
+DEVOP2(config-if)#ip nat inside
+DEVOP2(config-if)#exit
+DEVOP2(config)#!
+DEVOP2(config)#ip nat inside source list GS_NAT_ACL interface GigabitEthernet1 overload
+DEVOP2(config)#ip access-list standard GS_NAT_ACL
+DEVOP2(config-std-nacl)#permit 192.168.0.0 0.0.255.255
+DEVOP2(config-std-nacl)#!
+DEVOP2(config-std-nacl)#app-hosting appid guestshell
+DEVOP2(config-app-hosting)# app-vnic gateway1 virtualportgroup 0 guest-interface 0
+DEVOP2(config-app-hosting-gateway1)#    guest-ipaddress 192.168.35.2 netmask 255.255.255.0
+DEVOP2(config-app-hosting-gateway1)#    guest-ipaddress 192.168.35.2 netmask 255.255.255.0
+DEVOP2(config-app-hosting-gateway1)#
+DEVOP2(config-app-hosting-gateway1)#app-default-gateway 192.168.35.1  guest-interface 0 
+DEVOP2(config-app-hosting)#
+DEVOP2(config-app-hosting)#name-server0 1.1.1.1
+DEVOP2(config-app-hosting)# app-resource profile custom 
+DEVOP2(config-app-resource-profile-custom)#   cpu 1500 
+DEVOP2(config-app-resource-profile-custom)#   memory 512
+DEVOP2(config-app-resource-profile-custom)#end
+DEVOP2#guestshe
+DEVOP2#guestshell enable
+Interface will be selected if configured in app-hosting
+Please wait for completion
+The process for the command is not responding or is otherwise unavailable
+
+DEVOP2#guestshell enable
+Interface will be selected if configured in app-hosting
+Please wait for completion
+The process for the command is not responding or is otherwise unavailable
+
+DEVOP2#guestshell enable
+Interface will be selected if configured in app-hosting
+Please wait for completion
+guestshell installed successfully
+Current state is: DEPLOYED
+guestshell activated successfully
+Current state is: ACTIVATED
+guestshell started successfully
+Current state is: RUNNING
+Guestshell enabled successfully
+
+DEVOP2#
+DEVOP2#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+DEVOP2#
+DEVOP2#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+DEVOP2#sh version
+Cisco IOS XE Software, Version 16.09.05
+Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2020 by Cisco Systems, Inc.
+Compiled Thu 30-Jan-20 18:48 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2020 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+
+DEVOP2 uptime is 24 minutes
+Uptime for this control processor is 25 minutes
+System returned to ROM by reload
+System image file is "bootflash:packages.conf"
+Last reload reason: Unknown reason
+          
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: ax
+License Type: Default. No valid license found.
+Next reload license Level: ax
+
+
+Smart Licensing Status: Smart Licensing is DISABLED
+
+cisco CSR1000V (VXE) processor (revision VXE) with 2182252K/3075K bytes of memory.
+Processor board ID 9G5YZ4LX1F0
+3 Gigabit Ethernet interfaces
+32768K bytes of non-volatile configuration memory.
+3984976K bytes of physical memory.
+7774207K bytes of virtual hard disk at bootflash:.
+0K bytes of WebUI ODM Files at webui:.
+
+          
+DEVOP2#  conf t \
+                ^
+% Invalid input detected at '^' marker.
+
+DEVOP2#  conf t  
+Enter configuration commands, one per line.  End with CNTL/Z.
+DEVOP2(config)#host AKODEVOP
+AKODEVOP(config)#
+PYTHONMADE(config)#
+PYTHONMADE(config)#
+PYTHONMADE(config)#
+PYTHONMADE(config)#
+PYTHONMADE(config)#
+PYTHONMADE(config)#
+PYTHONMADE(config)#
+PYTHONMADE(config)#INT LO 0
+PYTHONMADE(config-if)#IP ADD 1.1.1.1 255.255.255.255
+PYTHONMADE(config-if)#do sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYTHONMADE(config-if)#do sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO(config-if)#EXIT
+PYDEVOP_AKO(config)#router ?
+  bgp       Border Gateway Protocol (BGP)
+  eigrp     Enhanced Interior Gateway Routing Protocol (EIGRP)
+  isis      ISO IS-IS
+  iso-igrp  IGRP for OSI networks
+  lisp      Locator/ID Separation Protocol
+  mobile    Mobile routes
+  odr       On Demand stub Routes
+  ospf      Open Shortest Path First (OSPF)
+  ospfv3    OSPFv3
+  rip       Routing Information Protocol (RIP)
+
+PYDEVOP_AKO(config)#router 
+
+
+User Access Verification
+
+Username: 
+Username: admin
+Password: 
+PYDEVOP_AKO#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+PYDEVOP_AKO(config)#ip http secure-server
+PYDEVOP_AKO(config)#ip http authentication local
+PYDEVOP_AKO(config)#restconf
+PYDEVOP_AKO(config)#netconf-yang
+PYDEVOP_AKO(config)#end
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#
+PYDEVOP_AKO#
+
+
+
+
+
+
+
+
+User Access Verification
+
+Username: 
+Username: admin
+Password: 
+PYDEVOP_AKO#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+PYDEVOP_AKO(config)#!username admin privilege 15 secret pass
+PYDEVOP_AKO(config)#ip http secure-server
+PYDEVOP_AKO(config)#ip http authentication local
+PYDEVOP_AKO(config)#restconf
+PYDEVOP_AKO(config)#end
+PYDEVOP_AKO#
+

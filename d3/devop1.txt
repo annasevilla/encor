@@ -1,0 +1,97 @@
+
+
+User Access Verification
+
+Username: admin
+Password: 
+% Login invalid
+
+Username: 
+Username: 
+Username: admin
+Password: 
+DEVOP1#
+DEVOP1#
+DEVOP1#
+DEVOP1#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DEVOP1(config)#iox
+DEVOP1(config)#interface GigabitEthernet1
+DEVOP1(config-if)#ip address dhcp
+DEVOP1(config-if)#ip nat outside
+DEVOP1(config-if)#no shut
+DEVOP1(config-if)#exit
+DEVOP1(config)#!
+DEVOP1(config)#interface VirtualPortGroup0
+DEVOP1(config-if)#ip address 192.168.35.1 255.255.255.0
+DEVOP1(config-if)#ip nat inside
+DEVOP1(config-if)#exit
+DEVOP1(config)#!
+DEVOP1(config)#$de source list GS_NAT_ACL interface GigabitEthernet1 overload
+DEVOP1(config)#ip access-list standard GS_NAT_ACL
+DEVOP1(config-std-nacl)#permit 192.168.0.0 0.0.255.255
+DEVOP1(config-std-nacl)#!
+DEVOP1(config-std-nacl)#app-hosting appid guestshell
+DEVOP1(config-app-hosting)#$ateway1 virtualportgroup 0 guest-interface 0     
+DEVOP1(config-app-hosting-gateway1)#$92.168.35.2 netmask 255.255.255.0       
+DEVOP1(config-app-hosting-gateway1)#$92.168.35.2 netmask 255.255.255.0
+DEVOP1(config-app-hosting-gateway1)#
+DEVOP1(config-app-hosting-gateway1)#$92.168.35.1  guest-interface 0          
+DEVOP1(config-app-hosting)#
+DEVOP1(config-app-hosting)#name-server0 1.1.1.1
+DEVOP1(config-app-hosting)# app-resource profile custom 
+DEVOP1(config-app-resource-profile-custom)#   cpu 1500 
+DEVOP1(config-app-resource-profile-custom)#   memory 512
+DEVOP1(config-app-resource-profile-custom)#end
+DEVOP1#gues 
+DEVOP1#guestshell ena
+DEVOP1#guestshell enable 
+Interface will be selected if configured in app-hosting
+Please wait for completion
+guestshell installed successfully
+Current state is: DEPLOYED
+guestshell activated successfully
+Current state is: ACTIVATED
+guestshell started successfully
+Current state is: RUNNING
+Guestshell enabled successfully
+
+DEVOP1#guestshell enable 
+Interface will be selected if configured in app-hosting
+Please wait for completion
+
+Guestshell enabled successfully
+
+DEVOP1#
+DEVOP1#guestshell enable 
+Interface will be selected if configured in app-hosting
+Please wait for completion
+
+Guestshell enabled successfully
+
+DEVOP1#guestshell enable 
+Interface will be selected if configured in app-hosting
+Please wait for completion
+
+Guestshell enabled successfully
+
+DEVOP1#
+DEVOP1#guestshell enable 
+Interface will be selected if configured in app-hosting
+Please wait for completion
+
+Guestshell enabled successfully
+
+DEVOP1#                  
+
+
+User Access Verification
+
+Username: 
+Username: admin
+Password: 
+% Login invalid
+
+Username: admin
+Password: 
+DEVOP1#

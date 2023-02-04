@@ -1,0 +1,21 @@
+Microsoft Windows [Version 10.0.20348.169]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Administrator>cd desktop
+
+C:\Users\Administrator\Desktop>cd anna
+
+C:\Users\Administrator\Desktop\anna>https://github.com/rivancorp/encord1
+'https:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Administrator\Desktop\anna>git clone https://github.com/rivancorp/encord1
+Cloning into 'encord1'...
+remote: Enumerating objects: 15, done.
+remote: Counting objects: 100% (15/15), done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 15 (delta 5), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (15/15), 24.22 KiB | 3.03 MiB/s, done.
+Resolving deltas: 100% (5/5), done.
+
+C:\Users\Administrator\Desktop\anna>

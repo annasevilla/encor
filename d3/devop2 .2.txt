@@ -1,0 +1,241 @@
+
+
+User Access Verification
+
+Username: admin
+Password: 
+PYDEVOP_AKO#sh ip int br\
+                        ^
+% Invalid input detected at '^' marker.
+
+PYDEVOP_AKO#sh ip int br 
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#ping 1.1.1.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 1.1.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+PYDEVOP_AKO#ping 8.8.8.8
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+PYDEVOP_AKO#
+
+
+
+User Access Verification
+
+Username: 
+Username: admin
+Password: 
+PYDEVOP_AKO#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+PYDEVOP_AKO(config)#!username admin privilege 15 secret pass
+PYDEVOP_AKO(config)#ip http secure-server
+PYDEVOP_AKO(config)#ip http authentication local
+PYDEVOP_AKO(config)#restconf
+PYDEVOP_AKO(config)#end
+PYDEVOP_AKO#ah ip int br
+             ^
+% Invalid input detected at '^' marker.
+
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#
+PYDEVOP_AKO#
+PYDEVOP_AKO#
+PYDEVOP_AKO#
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback100            172.16.100.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback100            172.16.100.1    YES other  up                    up      
+Loopback101            172.16.101.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback100            172.16.100.1    YES other  up                    up      
+Loopback101            172.16.101.1    YES other  up                    up      
+Loopback102            172.16.102.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback100            172.16.100.1    YES other  up                    up      
+Loopback101            172.16.101.1    YES other  up                    up      
+Loopback102            172.16.102.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback100            172.16.100.1    YES other  up                    up      
+Loopback101            172.16.101.1    YES other  up                    up      
+Loopback102            172.16.102.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+PYDEVOP_AKO(config)#no Loopback102
+                         ^
+% Invalid input detected at '^' marker.
+
+PYDEVOP_AKO(config)#no int Loopback102
+PYDEVOP_AKO(config)#end
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback100            172.16.100.1    YES other  up                    up      
+Loopback101            172.16.101.1    YES other  up                    up      
+Loopback102            172.16.102.1    YES other  up                    up      
+Loopback103            172.16.103.1    YES other  up                    up      
+Loopback104            172.16.104.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#conf t      
+Enter configuration commands, one per line.  End with CNTL/Z.
+PYDEVOP_AKO(config)#no Loopback102    
+PYDEVOP_AKO#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+PYDEVOP_AKO(config)#end               
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback100            172.16.100.1    YES other  up                    up      
+Loopback101            172.16.101.1    YES other  up                    up      
+Loopback102            172.16.102.1    YES other  up                    up      
+Loopback103            172.16.103.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback101            172.16.101.1    YES other  up                    up      
+Loopback102            172.16.102.1    YES other  up                    up      
+Loopback103            172.16.103.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback101            172.16.101.1    YES other  up                    up      
+Loopback103            172.16.103.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+Loopback103            172.16.103.1    YES other  up                    up      
+VirtualPortGroup0      192.168.35.1    YES manual up                    up      
+PYDEVOP_AKO#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet1       192.168.101.135 YES DHCP   up                    up      
+GigabitEthernet2       192.168.108.137 YES DHCP   up                    up      
+GigabitEthernet3       unassigned      YES unset  administratively down down    
+Loopback0              1.1.1.1         YES manual up                    up      
+Loopback5              5.5.5.5         YES TFTP   up                    up      
+Loopback6              6.6.6.6         YES TFTP   up                    up      
+Loopback7              7.7.7.7         YES TFTP   up                    up      
+Loopback8              8.8.8.8         YES TFTP   up                    up      
+Loopback9              9.9.9.9         YES TFTP   up                    up      
+VirtualPortGroup0      1

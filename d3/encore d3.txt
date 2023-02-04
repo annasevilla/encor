@@ -1,0 +1,18 @@
+ENTERPRISE SKILLS:
+
+TASK 1:
+
+1. Network programability: how this affects you
+
+you + RestApi + yang/xml + ciscoDevices
+
+you + PythonApi + Json + ciscoDevices
+
+you + RedhatAnsible + yaml + ciscoDevices
+
+programmer + network/systems = network automation
+
+CLASSIC NETWORK ENGINEER VS MODERN NETWORK ENGINEER
+console				controllers:sdwan/wlc
+ssh				postman
+telnet
