@@ -1,0 +1,39 @@
+ENCORE D4
+
+TASK 1 : get basic scripts
+git clone : git clone https://github.com/rivancorp/encord4
+
+2. download https://www.vladan.fr/tiny-linux-ovf-download-ssh-nano-nginx-and-open-vm-tools-preinstalled/
+
+Built in python -> Cisco
+postman -> CISCO
+
+3. create DVP1 and DVP2
+
+
+TASK 2 CCNA TO CCNP TO CCIE SKILL DIFFERENCE:
+skill1: Cisco Embedded  Event Manager: "EEM"
+A tool for revenge, runs all commands with trigger 
+- DO A revenge_eem" no shut
+========NOTES========
+
+cli command = magtatype si cisco
+syslog pattern = magbabasa
+syslog msg = magsasabi
+
+
+====CISCO===
+
+BOOTFLASH
+NVRAM
+FLASH
+
+
+SKILL2: CCNP DIRECT PYTHON SKILLS
+- VISUAL STUDIO CODE FOR JSON FORMAT
+
+
+SKILL 3: CISCO CONTROL PLANE POLICING: CoPP:
+
+ASSIGNMENT:
+

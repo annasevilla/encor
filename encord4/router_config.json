@@ -1,0 +1,33 @@
+{
+  "hostname": "admin",
+  "password": "password",
+  "ip_address": "192.168.108.139",
+  "subnet_mask": "255.255.255.0",
+  "interface": {
+    "GigabitEthernet1": {
+      "description": "GigaETH 1 VMNET 1",
+      "ip_address": "192.168.101.139",
+      "subnet_mask": "255.255.255.0"
+    },
+    "GigabitEthernet2": {
+      "description": "GigaETH 2 VMNET 2",
+      "ip_address": "192.168.102.139",
+      "subnet_mask": "255.255.255.0"
+    },
+    "Loopback0": {
+      "description": "Loopback 0",
+      "ip_address": "192.168.103.139",
+      "subnet_mask": "255.255.255.255"
+    },
+    "Loopback1": {
+      "description": "Loopback 1",
+      "ip_address": "1.1.1.1",
+      "subnet_mask": "255.255.255.255"
+    },
+    "Loopback2": {
+      "description": "Loopback 2",
+      "ip_address": "2.2.2.2",
+      "subnet_mask": "255.255.255.255"
+    }
+  }
+}

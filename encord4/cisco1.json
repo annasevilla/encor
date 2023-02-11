@@ -1,0 +1,25 @@
+{
+ "router": [
+  {
+     "host_ip": "192.168.108.139",
+     "hostname": "PYTHONxJSON1",
+	 "username": "admin",
+	 "password": "password",
+     "lo_interfaces": ["1.1.1.11","2.2.2.22","3.3.3.33"]
+  },
+   {
+     "host_ip": "192.168.108.140",
+     "hostname": "PYTHONxJSON2",
+	 "username": "admin",
+	 "password": "password",
+     "lo_interfaces": ["4.4.4.44","5.5.5.55","6.6.6.66"]
+   },
+   {
+     "host_ip": "192.168.108.141",
+     "hostname": "PYTHONxJSON3",
+	 "username": "admin",
+	 "password": "password",
+     "lo_interfaces": ["7.7.7.77","8.8.8.88","9.9.9.99"]
+  }
+ ]
+}
