@@ -6,7 +6,7 @@ ip dhcp excluded-add 10.2.1.200 10.2.1.254
 !
 ip dhcp pool vlan10
   network 10.2.1.0 255.255.255.0
-  default-router 10.2.1.254
+  default-router 10.2.1.1
 !
 D2:
 CONFIG T
@@ -15,7 +15,7 @@ ip dhcp excluded-add 10.2.1.250 10.2.1.254
 !
 ip dhcp pool vlan10
   network 10.2.1.0 255.255.255.0
-  default-router 10.2.1.254
+  default-router 10.2.1.2
 !
 A1:
 config t
@@ -787,7 +787,7 @@ router bgp 1
 		
 		ipv6 unicast-routing
 		int e0/0
-		shutdown
+		no shutdown
 		ipv6 en
 		ipv6 add 10:2:1:12::B00B/64
 		end
@@ -1372,7 +1372,7 @@ routed: in this case, ISP1 and ISP3 will tell R1 to use ISP2 a lot!!!
 @ISP1
 	config t
 		route-map ASPATH permit 10
-			set as-path prepend 45 45 45 45 45
+			set as-path prepend 45 45 45 45 45 45
 			exit
 		router bgp 45
 			neighbor 208.8.8.1 route-map ASPATH OUT

@@ -306,6 +306,7 @@ f.close()
 
 ====COPP=====
 COOP BASIC
+ACP -access lisst, class map, policy map
 
 conf t
 ip access-list extended SSH
@@ -395,3 +396,15 @@ class class-default
  end
  sh policy-map control-plane
  sh policy-map
+ 
+ ======================== BGP PATH SELECTION LAB==========================
+ 
+ @@weight
+ 
+ conf t
+		router bgp 1
+			no nei 209.9.9.3 weight 200
+			no nei 208.8.8.4 weight 133
+			no nei 207.7.7.2 weight 169
+			end
+	clear ip bgp * soft
