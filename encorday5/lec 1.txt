@@ -1,0 +1,288 @@
+CCNP/CCCIE SKILLS:
+skill 1
+- ONE CONSOLE, MANY DEVICE
+-takas: ctrl + shift + 6 -> x
+
+skill 2: find the bobo
+is your current engineer, qualified ba or bobo?
+- ang magaling green agad ang switch port pag nagkabit ng host
+
+skill3: encor CCNP needs to be "racist!"
+- CCNP looks lang dapat alam kung mahal or mura ang switch
+MAHAL: NEXUS 9000 n9k + sup/supervisor engine + catalyst 9000
+
+
+skill4: make the organceAmber gone:
+Good amber: ALT+blk -> root port
+
+Bad amber:  Fa0/4               Back BLK 19        128.5    P2p--- ROLE: BCK (maling cabling)
+
+skill5: MAKE THE MOST EXPENSIVE SWITCH ROOT BRIDGES
+
+Core taas: SUGGESTED
+conf t
+spanning-tree vlan 1-50 root primary
+spanning-tree vlan 51-100 root secondary
+!or
+spanning-tree vlan 1-50 priority 0
+spanning-tree vlan 51-100 priority 1
+
+CORE BABA:
+conf t
+spanning-tree vlan 1-50 root SECONDARY
+spanning-tree vlan 51-100 root PRIMARY
+!or
+spanning-tree vlan 1-50 priority 1
+spanning-tree vlan 51-100 priority 0
+
+ACCESS SWITCH: NEVER EVER BRCOME RB OR 2ND RB
+conf t
+spanning-tree vlan 1-100 priority 61440
+end
+
+SKILL6: CCNP PANIS ANG TRUNKING
+@@acsw:trunk fa0/5-8
+conf t
+int range fa0/5-8
+switchport trunk encap dot1q
+switchport mode trunk
+
+@@coretaas:trunk fa0/1-2, fa0/5-6
+conf t
+int range fa0/1-2, fa0/5-6
+switchport trunk encap dot1q
+switchport mode trunk
+end
+
+@@corebaba:trunk fa0/1-2, fa0/5-6
+int range fa0/1-2, fa0/7-8
+switchport trunk encap dot1q
+switchport mode trunk
+
+
+SKILL7: layer 2 etherchannel using LACP, pagP: obsolete/DVD
+-LINK AGGREGATION CONTROL PROTOCOL
+TAAS/BABA:
+conf t
+int range fa0/1-2
+channel-group 1 mode active
+channel-protocol lacp
+int port-channel 1
+switchport trunk encap dot1q
+switchport mode trunk
+
+sh etherchannel summary ----- dapat naka(su)
+
+
+sh int po1 | inc BW ---- TO SHOW IF NAGCOMBINE NA YUNG BW
+
+
+CCNP SKILL8: VTP trunking skills
+@@CORE TAAS/BABA:
+conf t
+vtp domain ccnp
+vtp password encor
+vtp version 1
+vtp mode server
+exit
+
+@@ACCESS
+conf t
+vtp domain ccnp
+vtp password encor
+vtp version 1
+vtp mode client
+exit
+
+CCNP SKILL9: ANG TUNAY NA CCNP KAYA GUMAWA NG SVI (SWITCH VIRTUAL INTERFACE)
+@@core TAAS
+conf t
+ip routing
+ipv6 unicast-routing
+int vlan 11
+no shut
+ip add 10.1.11.4 255.255.255.0
+ipv6 add 10:1:11::4/64
+int vlan 21
+no shut
+ip add 10.1.21.4 255.255.255.0
+ipv6 add 10:1:21::4/64
+
+@@CORE BABA
+
+conf t
+ip routing
+ipv6 unicast-routing
+int vlan 12
+no shut
+ip add 10.1.12.4 255.255.255.0
+ipv6 add 10:1:12::4/64
+int vlan 22
+no shut
+ip add 10.1.22.4 255.255.255.0
+ipv6 add 10:1:22::4/64
+
+SKILL10: SVI VS ROUTED PORTS (NO SWITCPORT)-> FW?ROUTER
+CREATE A ROUTED PORT ON CORE BABA , FA 0/3
+conf t
+int fa0/3
+no switchport
+no shut
+ip add 200.0.0.31 255.255.255.0
+do ping 200.0.0.1
+ip route 0.0.0.0 0.0.0.0 200.0.0.1
+do ping 8.8.8.8
+
+SKILL11: CCNP SKILLS FOR 802.1D  (cost > priority > NBR)
+-learn to modify cost for not bossing (LAGING COST PAG DI BOSSING)
+@@ACSW
+conf t
+int fa0/6
+spanning-tree cost 9
+do sh spanning-tree vlan 1
+
+to change the port priority
+
+spanning-tree port-priority 96----- DI MAGCHANGE EFFECT
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Fa0/1               Desg FWD 19        128.2    P2p 
+Fa0/3               Desg FWD 19        128.4    P2p 
+Fa0/5               Root FWD 19        128.6    P2p----- 
+Fa0/6               Altn BLK 19         96.7    P2p 
+Fa0/7               Altn BLK 19        128.8    P2p 
+Fa0/8               Altn BLK 19        128.9    P2p 
+
+@@CORE TAAS (SERVER OR BOSS)
+conf t
+int fa0/6
+spanning-tree port-priority 64
+
+--check in accesss 
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Fa0/1               Desg FWD 19        128.2    P2p 
+Fa0/3               Desg FWD 19        128.4    P2p 
+Fa0/5               Altn BLK 19        128.6    P2p 
+Fa0/6               Root FWD 19         96.7    P2p --------
+Fa0/7               Altn BLK 19        128.8    P2p 
+Fa0/8               Altn BLK 19        128.9    P2p 
+
+=========
+
+TASK 12:MALUPET NA NETWORK ENGINEER (portfast BPDU GUARD)
+-802.1w or rapid spanningTP
+@@ct,cb,Ac:
+conf t
+spanning-tree mode rapid-pvst
+end
+
+ENABLING the Features:
+@@coretaas:
+conf t
+spanning-tree mode rapid-pvst
+spanning-tree Backbonefast
+
+@@corebaba
+conf t
+spanning-tree mode rapid-pvst
+spanning-tree Backbonefast
+
+@@acsw:
+conf t
+spanning-tree mode rapid-pvst
+spanning-tree uplinkfast
+spanning-tree portfast bpduguard default
+int range fa0/1-4
+switchport mode access
+spanning-tree portfast
+spanning-tree guard root
+spanning-tree bpduguard enable
+
+
+ACSW#sh int status err-disable --- 
+Port      Name               Status       Reason               Err-disabled Vlans
+Fa0/2                        err-disabled bpduguard
+Fa0/4                        err-disabled bpduguard
+
+magiging errdisable pag
+1. kinabit sa sarili
+2. nagkabit ng di kasama sa current network
+
+
+TASK 13:CCNP SKILL:multiple instance spanning-tree
+LOWERS CPU UTILIZATION IF ITS OVER 85%
+@@ALL:
+conf t
+spanning-tree mode mst
+
+do sh spanning-tree mst conf
+
+
+CoreTaas(config)#do sh process cpu | inc uti
+CPU utilization for five seconds: 4%/0%; one minute: 6%; five minutes: 7%
+ 276           0           2          0  0.00%  0.00%  0.00%   0 Routing Topology 
+ 336           0           2          0  0.00%  0.00%  0.00%   0 EEM ED Routing 
+
+@@all:create instances/cpu: 1, 2, 3
+conf t
+spanning-tree mode mst
+spanning-tree mst configuration
+name TIPIDCPU
+revision 1
+instance 1 vlan 21-4
+instance 2 vlan 42-62
+instance 3 vlan 63-93
+exit
+do sh spanning-tree mst configuration
+
+@@core taas
+conf t
+spanning-tree mst 0 root primary
+spanning-tree mst 1 root secondary
+spanning-tree mst 2 root primary
+spanning-tree mst 3 root secondary
+
+@core baba
+conf t
+spanning-tree mst 0 root secondary
+spanning-tree mst 1 root primary
+spanning-tree mst 2 root secondary
+spanning-tree mst 3 root primary
+
+
+TASK14: CISCO NEXUS SKILLS
+admin
+C1sc0123
+ano meron sa nexus na wala sa catalyst:
+1. checkpoint and rollback
+- NEXUS REQUIRES ALL FEATURES TO BE ENABLED
+@@TOP NEXUS FEATURES TO BE ENABLED: BAWAL ANG SCRIPT
+@@BOTH
+Conf t
+feature OSPF
+FEATURE BGP
+FEATURE INTERFACE-VLAN
+FEATURE NV OVERLAY
+feature vn-segment-vlan-based
+system jumbomtu 9216
+copy run start
+
+
+rollback running-config checkpoint <checkpoint name>
+
+
+===============
+
+HOW TO PASS ENCORE IN 2 WEEKS
+OPTION 1: MAY WORK:3 WEEKS (350-401
+- no LAB: 85 to 120 question
+1.download the latest FEB/MARCH
+2.python and JSON
+3.dnac log in (https://sandboxdnac.cisco.com/)
+-devnetuser pw:Cisco123!
+HANDS ON
+IPV6/IPV6:STATIC, EIGRP,OSPF,BGP,REDISTRIBUTION
+SWITCH(D1,D2,A1,A2,P1,P2)-802.1d,802.1w,802.1s,port priority)

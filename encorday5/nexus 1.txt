@@ -1,0 +1,497 @@
+Running useradd commands...
+NOTE: docker: Performing useradd with [ -r -U -s /bin/false dockremap]
+Loading system software
+update-alternatives: Linking /bin/vi to /usr/bin/vim.vim
+update-alternatives: Linking /usr/bin/vim to /usr/bin/vim.vim
+invalid group file entry
+delete line 'aaa-db-operator:508:'? No
+grpck: no changes
+Starting portmap daemon...
+Saving image for img-sync ...
+creating NFS state directory: done
+starting 8 nfsd kernel threads: done
+starting mountd: done
+starting statd: done
+exit code: 1
+Not Micron SSD...
+Not Micron SSD...
+Installing local RPMS
+Patch Repository Setup completed successfully
+Creating /dev/mcelog
+Starting mcelog daemon
+INIT: Entering runlevel: 3
+Running S93thirdparty-script...
+
+done
+Netbroker support IS present in the kernel.
+done
+Disabling cisco netbroker hooks ... done
+Skipping EMON in vmachine...
+Executing Prune clis.
+ethernet switching mode Sat Feb 18 04:06:08 UTC 2023
+Feb 18 04:06:11 %FW_APP-2-FIRMWARE_IMAGE_LOAD_SUCCESS No Firmware needed for Non SR card.
+2023 Feb 18 04:06:14 NXOSa %$ VDC-1 %$  %USER-2-SYSTEM_MSG: <<%USBHSD-2-MOUNT>> logflash: online  - usbhsd
+2023 Feb 18 04:06:16 NXOSa %$ VDC-1 %$  %DAEMON-2-SYSTEM_MSG: <<%ASCII-CFG-2-CONF_CONTROL>> Binary restore - ascii-cfg[30032]
+2023 Feb 18 04:06:18 NXOSa %$ VDC-1 %$ netstack: Registration with cli server complete
+2023 Feb 18 04:06:26 NXOSa %$ VDC-1 %$ %USER-1-SYSTEM_MSG: NXOS RPMs have been tampered in the booted image. Verify validity of the image. Remove tampered rpms from the device. Check /tmp/rpm.remove.list. - root
+2023 Feb 18 04:06:31 NXOSa %$ VDC-1 %$ %USER-2-SYSTEM_MSG: ssnmgr_app_init called on ssnmgr up - aclmgr
+2023 Feb 18 04:06:35 NXOSa %$ VDC-1 %$ %ICAM-2-LOGFLASH_NOT_AVAILABLE: iCAM storage: Logflash not available or not enough space. History data will not be persistent.
+2023 Feb 18 04:06:39 NXOSa %$ VDC-1 %$ %USER-0-SYSTEM_MSG: end of default policer - copp
+2023 Feb 18 04:06:45 NXOSa %$ VDC-1 %$ %CARDCLIENT-2-FPGA_BOOT_GOLDEN: IOFPGA booted from Golden
+2023 Feb 18 04:06:45 NXOSa %$ VDC-1 %$ %PLATFORM-2-MOD_PRESENT: Detected the presence of Module 1
+
+2023 Feb 18 04:06:48 NXOSa %$ VDC-1 %$ %VDC_MGR-2-VDC_ONLINE: vdc 1 has come online 
+2023 Feb 18 04:06:49 NXOSa %$ VDC-1 %$ %PLATFORM-2-MOD_INSERTED: Module 1 inserted (Nexus 9000v 64 port Ethernet Module), 7 VNICs mapped
+
+User Access Verification
+NXOSa login: [  172.592994] pci_rescan_init: 
+[  172.593785] pci_rescan_proc_init: 
+2023 Feb 18 04:06:55 NXOSa %$ VDC-1 %$ %KERN-0-SYSTEM_MSG: [  172.592994] pci_rescan_init:  - kernel
+2023 Feb 18 04:06:55 NXOSa %$ VDC-1 %$ %KERN-0-SYSTEM_MSG: [  172.593785] pci_rescan_proc_init:  - kernel
+2023 Feb 18 04:07:10 NXOSa %$ VDC-1 %$ %PLATFORM-2-MOD_DETECT: Module 1 detected (Serial number 9B33ROPY0O9) Module-Type Nexus 9000v 64 port Ethernet Module Model N9K-X9364v
+2023 Feb 18 04:07:10 NXOSa %$ VDC-1 %$ %PLATFORM-2-MOD_PWRUP: Module 1 powered up (Serial number 9B33ROPY0O9)
+2023 Feb 18 04:07:49 NXOSa %$ VDC-1 %$ %ASCII-CFG-2-CONF_CONTROL: System ready
+
+User Access Verification
+NXOSa login: admin
+Password: 
+
+
+
+
+Login incorrect
+
+User Access Verification
+login: admin
+Password: 
+
+Login incorrect
+
+User Access Verification
+login: Login timed out after 60 seconds
+
+User Access Verification
+NXOSa login: 
+User Access Verification
+NXOSa login: 
+User Access Verification
+NXOSa login: 
+User Access Verification
+NXOSa login: 
+User Access Verification
+NXOSa login: admin
+Password: 
+
+Cisco NX-OS Software
+Copyright (c) 2002-2021, Cisco Systems, Inc. All rights reserved.
+Nexus 9000v software ("Nexus 9000v Software") and related documentation,
+files or other reference materials ("Documentation") are
+the proprietary property and confidential information of Cisco
+Systems, Inc. ("Cisco") and are protected, without limitation,
+pursuant to United States and International copyright and trademark
+laws in the applicable jurisdiction which provide civil and criminal
+penalties for copying or distribution without Cisco's authorization.
+
+Any use or disclosure, in whole or in part, of the Nexus 9000v Software
+or Documentation to any third party for any purposes is expressly
+prohibited except as otherwise authorized by Cisco in writing.
+The copyrights to certain works contained herein are owned by other
+third parties and are used and distributed under license. Some parts
+of this software may be covered under the GNU Public License or the
+GNU Lesser General Public License. A copy of each such license is
+available at
+http://www.gnu.org/licenses/gpl.html and
+http://www.gnu.org/licenses/lgpl.html
+***************************************************************************
+*  Nexus 9000v is strictly limited to use for evaluation, demonstration   *
+*  and NX-OS education. Any use or disclosure, in whole or in part of     *
+*  the Nexus 9000v Software or Documentation to any third party for any   *
+*  purposes is expressly prohibited except as otherwise authorized by     *
+*  Cisco in writing.                                                      *
+***************************************************************************
+NXOSa# 
+NXOSa# 
+NXOSa# checkpoint bagoito
+Done
+NXOSa# conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+NXOSa(config)# int loopback 1
+NXOSa(config-if)# ip add 1.1.1.1 255.255.255.255
+NXOSa(config-if)# int loopback 2
+NXOSa(config-if)# ip add 2.2.2.2 255.255.255.255
+NXOSa(config-if)# do sh ip int br
+
+IP Interface Status for VRF "default"(1)
+Interface            IP Address      Interface Status
+Lo1                  1.1.1.1         protocol-up/link-up/admin-up       
+Lo2                  2.2.2.2         protocol-up/link-up/admin-up       
+NXOSa(config-if)# end
+NXOSa# checkpoint meronglb
+Done
+NXOSa# show checkpoint summ
+                       ^
+% Invalid command at '^' marker.
+NXOSa# show checkpoint summary
+1) bagoito:
+Created by admin
+Created at Sat, 04:32:12 18 Feb 2023
+Size is 15,352 bytes
+User Checkpoint Summary
+--------------------------------------------------------------------------------
+Description: None
+
+2) meronglb:
+Created by admin
+Created at Sat, 04:34:29 18 Feb 2023
+Size is 15,474 bytes
+User Checkpoint Summary
+--------------------------------------------------------------------------------
+Description: None
+
+NXOSa#  rollback running-config checkpoint bagoito
+ADVISORY: Rollback operation started...
+Modifying running configuration from another VSH terminal in parallel
+is not recommended, as this may lead to Rollback failure.
+
+mv: cannot stat '/var/sysmgr/tmp_logs/kernel-trace.18573': No such file or directory
+[ 2175.723930] sysrq: SysRq : Resetting
+3h
+BdsDxe: loading Boot0001 "UEFI QEMU HARDDISK QM00005 " from PciRoot(0x0)/Pci(0x5,0x0)/Sata(0x0,0xFFFF,0x0)
+BdsDxe: starting Boot0001 "UEFI QEMU HARDDISK QM00005 " from PciRoot(0x0)/Pci(0x5,0x0)/Sata(0x0,0xFFFF,0x0)
+Sysconf checksum failed. Using default values
+WARNING:  No BIOS Info found 
+Sysconf checksum failed. Using default values
+Sysconf checksum failed. Using default values
+Sysconf checksum failed. Using default values
+ATE0Q1&D2&C1S0=1
+Standalone chassis 
+check_bootmode: grub2pxe: grub failed, launch ipxe
+Trying to load ipxe 
+Loading Application: 
+/Vendor(429bdb26-48a6-47bd-664c-801204061400)/UnknownMedia(6)/EndEntire
+cannot load imageFailed to launch ipxe 
+Came back to grub, now load efi shell
+Trying to load efishell 
+Loading Application: 
+/Vendor(429bdb26-48a6-47bd-664c-801204061400)/UnknownMedia(6)/EndEntire
+cannot load imageFailed to launch shell
+Trying to read config file /boot/grub/menu.lst.local from (hd0,4) 
+ Filesystem type is ext2fs, partition type 0x83
+
+Booting bootflash:/nxos.9.3.8.bin ...
+Booting bootflash:/nxos.9.3.8.bin 
+Trying diskboot 
+ Filesystem type is ext2fs, partition type 0x83
+Image valid
+Boot Time: 2/18/2023  4:40:26
+Installing klm_card_index
+done
+Linking n9k flash devices
+creating flash devices BOOT_DEV= sda
+Replacing inittab for N9Kv pEoR node - peorhost
+INIT: version 2.88 booting
+INIT: /etc/inittab[77]: duplicate ID field "S0"
+rm: cannot remove '/etc/rc.d/rcS.d/S08prefetch-image': No such file or directory
+Setting up sysV scripts for host node
+Installing ata_piix module ... done.
+Unsquashing rootfs ...
+is_lxc: is_titan_eor:y is_stby: suffix: klm_ftrace: /isanboot/lib/modules/klm_ftrace.o
+Installing ftrace in lxc 0 mode done
+Not Micron SSD...
+
+Checking all filesystems.cgroups initialized
+Checking rpmstore swap in host context.
+tune2fs 1.42.9 (28-Dec-2013)
+Setting reserved blocks percentage to 0% (0 blocks)
+Not Micron SSD...
+INIT: Entering runlevel: 3
+cat: /sys/module/klm_cctrli*/parameters/cctrl_hw_rev_maj*: No such file or directory
+cp: cannot stat '/nxos/tmp/vdc_1_sup1': No such file or directory
+rm: cannot remove '/isan/bin/bios_imgs/*': No such file or directory
+rm: cannot remove '/isan/lib/libtahusdcli.so': No such file or directory
+
+Linking n9k flash devices
+creating flash devices BOOT_DEV= sda
+mknod: '/dev/sda7': File exists
+Replacing inittab for N9Kv pEoR node - vsup
+INIT: version 2.88 booting
+Unsquashing rootfs ...
+Total size needed in bootflash is 111232
+check bootflash : OK
+Total size needed in bootflash is 41232
+check bootflash : OK
+No TOR virtual chassis
+Enabling 8250 serial driver spurious INTs workaround
+Installing isan procfs isan_proc_name=isan26... done.
+Installing SSE module with card index 21099 and vslot ID 26 ... done.
+Creating SSE device node 247 ... done.
+cg controllers already mounted at /var/cgroup
+Inserting kernel_services module ... done.
+Making kernel_services character devices
+is_lxc: is_titan_eor:y is_stby:0 suffix: klm_ftrace: /isanboot/lib/modules/klm_ftrace.o
+klm_ftrace already loaded. skip.
+Loading I2C driver ... done.
+Loading MEM scrub driver ... done.
+Installing CCTRL driver for card_type 29 in vslot ID 26 on a VM without NEED_GEM ... done.
+18.96: Interrupt throttling disabled. No cctrl irq detected.
+Loading IGB driver ... done.
+
+Checking all filesystems.
+Installing SPROM driver ... 21099 Extracting rpms from image...
+IS_N9K done.
+Resetting Backplane ACT2/SPROM...SUP IOFPGA Base addr 0xSUP IOFPGA Reset control reg. addr 0x8000084old data: 80000000 new data: 8
+old data: 8 new data: 0
+CORTINA-SUPInstalling pfmsvcs module ...done.
+Installing nvram module ... done.
+Installing if_index module with port mode 6 ... done.
+Installing fcfwd
+Installing RNI lcnd ... done
+Installing LC netdev container_id=0 is_standby=0 ... done
+Installing psdev module ... done.
+Installing veobc module ... done.
+Checking SR card
+Card Index is 21099
+Inserting eMMC module ... 
+Inserting mtdphysmap module...[   21.063265] Error: Could not find mtd devices 
+Inserting OBFL module ... done.
+Making OBFL character devices
+mounting plog for N9k!
+Sat Feb 18 04:40:49 UTC 2023::Starting Nexus 9000v initial VNIC deposit into vnicBank
+Trying to mount cdrom...
+Sat Feb 18 04:40:50 UTC 2023::Done with Nexus 9000v initial VNIC deposit into vnicBank
+Extracting 32 bit python
+ Removing any system startup links for cgroups-init ...
+ Adding system startup for /etc/init.d/cgroups-init.
+tune2fs 1.42.9 (28-Dec-2013)
+Setting reserved blocks percentage to 0% (0 blocks)
+ Removing any system startup links for docker ...
+Running groupadd commands...
+NOTE: docker: Performing groupadd with [ -r docker]
+Running useradd commands...
+NOTE: docker: Performing useradd with [ -r -U -s /bin/false dockremap]
+Loading system software
+update-alternatives: Linking /bin/vi to /usr/bin/vim.vim
+update-alternatives: Linking /usr/bin/vim to /usr/bin/vim.vim
+invalid group file entry
+delete line 'aaa-db-operator:508:'? No
+grpck: no changes
+Starting portmap daemon...
+Saving image for img-sync ...
+creating NFS state directory: done
+starting 8 nfsd kernel threads: done
+starting mountd: done
+starting statd: done
+exit code: 1
+Not Micron SSD...
+Not Micron SSD...
+Installing local RPMS
+Patch Repository Setup completed successfully
+Creating /dev/mcelog
+Starting mcelog daemon
+INIT: Entering runlevel: 3
+Running S93thirdparty-script...
+
+done
+Note: HAP reset core found "1676695207_0x1b01_sysmgr_log.18573.tar.gz"
+Restored 1676695207_0x1b01_sysmgr_log.18573.tar.gz successfully
+Netbroker support IS present in the kernel.
+done
+Disabling cisco netbroker hooks ... done
+Skipping EMON in vmachine...
+Executing Prune clis.
+ethernet switching mode Sat Feb 18 04:41:49 UTC 2023
+Feb 18 04:41:52 %FW_APP-2-FIRMWARE_IMAGE_LOAD_SUCCESS No Firmware needed for Non SR card.
+2023 Feb 18 04:41:55 NXOSa %$ VDC-1 %$  %USER-2-SYSTEM_MSG: <<%USBHSD-2-MOUNT>> logflash: online  - usbhsd
+2023 Feb 18 04:41:56 NXOSa %$ VDC-1 %$  %DAEMON-2-SYSTEM_MSG: <<%ASCII-CFG-2-CONF_CONTROL>> Binary restore - ascii-cfg[30071]
+2023 Feb 18 04:41:59 NXOSa %$ VDC-1 %$ netstack: Registration with cli server complete
+2023 Feb 18 04:42:06 NXOSa %$ VDC-1 %$ %USER-1-SYSTEM_MSG: NXOS RPMs have been tampered in the booted image. Verify validity of the image. Remove tampered rpms from the device. Check /tmp/rpm.remove.list. - root
+2023 Feb 18 04:42:11 NXOSa %$ VDC-1 %$ %USER-2-SYSTEM_MSG: ssnmgr_app_init called on ssnmgr up - aclmgr
+2023 Feb 18 04:42:16 NXOSa %$ VDC-1 %$ %ICAM-2-LOGFLASH_NOT_AVAILABLE: iCAM storage: Logflash not available or not enough space. History data will not be persistent.
+2023 Feb 18 04:42:17 NXOSa %$ VDC-1 %$ %USER-0-SYSTEM_MSG: end of default policer - copp
+2023 Feb 18 04:42:20 NXOSa %$ VDC-1 %$ %CARDCLIENT-2-FPGA_BOOT_GOLDEN: IOFPGA booted from Golden
+2023 Feb 18 04:42:21 NXOSa %$ VDC-1 %$ %PLATFORM-2-MOD_PRESENT: Detected the presence of Module 1
+2023 Feb 18 04:42:22 NXOSa %$ VDC-1 %$ %VDC_MGR-2-VDC_ONLINE: vdc 1 has come online 
+
+2023 Feb 18 04:42:23 NXOSa %$ VDC-1 %$ %PLATFORM-2-MOD_INSERTED: Module 1 inserted (Nexus 9000v 64 port Ethernet Module), 7 VNICs mapped
+
+User Access Verification
+NXOSa login: [  121.732924] pci_rescan_init: 
+[  121.733523] pci_rescan_proc_init: 
+2023 Feb 18 04:42:29 NXOSa %$ VDC-1 %$ %KERN-0-SYSTEM_MSG: [  121.732924] pci_rescan_init:  - kernel
+2023 Feb 18 04:42:29 NXOSa %$ VDC-1 %$ %KERN-0-SYSTEM_MSG: [  121.733523] pci_rescan_proc_init:  - kernel
+2023 Feb 18 04:42:46 NXOSa %$ VDC-1 %$ %PLATFORM-2-MOD_DETECT: Module 1 detected (Serial number 9B33ROPY0O9) Module-Type Nexus 9000v 64 port Ethernet Module Model N9K-X9364v
+2023 Feb 18 04:42:46 NXOSa %$ VDC-1 %$ %PLATFORM-2-MOD_PWRUP: Module 1 powered up (Serial number 9B33ROPY0O9)
+2023 Feb 18 04:43:26 NXOSa %$ VDC-1 %$ %ASCII-CFG-2-CONF_CONTROL: System ready
+
+User Access Verification
+NXOSa login: 
+User Access Verification
+NXOSa login: 
+User Access Verification
+NXOSa login: 
+User Access Verification
+NXOSa login: admin
+Password: 
+
+Cisco NX-OS Software
+Copyright (c) 2002-2021, Cisco Systems, Inc. All rights reserved.
+Nexus 9000v software ("Nexus 9000v Software") and related documentation,
+files or other reference materials ("Documentation") are
+the proprietary property and confidential information of Cisco
+Systems, Inc. ("Cisco") and are protected, without limitation,
+pursuant to United States and International copyright and trademark
+laws in the applicable jurisdiction which provide civil and criminal
+penalties for copying or distribution without Cisco's authorization.
+
+Any use or disclosure, in whole or in part, of the Nexus 9000v Software
+or Documentation to any third party for any purposes is expressly
+prohibited except as otherwise authorized by Cisco in writing.
+The copyrights to certain works contained herein are owned by other
+third parties and are used and distributed under license. Some parts
+of this software may be covered under the GNU Public License or the
+GNU Lesser General Public License. A copy of each such license is
+available at
+http://www.gnu.org/licenses/gpl.html and
+http://www.gnu.org/licenses/lgpl.html
+***************************************************************************
+*  Nexus 9000v is strictly limited to use for evaluation, demonstration   *
+*  and NX-OS education. Any use or disclosure, in whole or in part of     *
+*  the Nexus 9000v Software or Documentation to any third party for any   *
+*  purposes is expressly prohibited except as otherwise authorized by     *
+*  Cisco in writing.                                                      *
+***************************************************************************
+NXOSa# 
+NXOSa# 
+NXOSa# 
+NXOSa# 
+NXOSa# CONF T
+Enter configuration commands, one per line. End with CNTL/Z.
+NXOSa(config)# feature OSPF
+NXOSa(config)# 2023 Feb 18 04:45:59 NXOSa %$ VDC-1 %$ %LICMGR-2-LOG_LIC_MISSING_WARNING: A feature that requires LAN_ENTERPRISE_SERVICES_PKG license is not installed. System supports honor based licensing so feature will continue to be fully functional. Use 'show license usage <package-name>' to find features using missing license.
+
+NXOSa(config)# FEATURE BGP
+NXOSa(config)# FEATURE INTERFACE VLAN
+                                 ^
+% Invalid command at '^' marker.
+NXOSa(config)# feature interface ?
+  <CR>   
+
+NXOSa(config)# feature interface ?
+  <CR>   
+
+NXOSa(config)# hostname nexus1
+nexus1(config)# end
+nexus1# checkpoint bago
+Done
+nexus1# conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+nexus1(config)# FEATURE INTERFACE-VLAN
+nexus1(config)# FEATURE NV OVERLAY
+nexus1(config)# feature vn-segment-vlan-based
+nexus1(config)# system jumbomtu 9216
+nexus1(config)# copy run start
+[########################################] 100%
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+nexus1(config)# router ospf10
+                           ^
+% Invalid command at '^' marker.
+nexus1(config)# router ospf 10
+nexus1(config-router)# int e1/1
+nexus1(config-if)# no switchport
+nexus1(config-if)# ip add 100.1.1.1/30
+nexus1(config-if)# ip router ospf 10 area 0
+nexus1(config-if)# no shut
+nexus1(config-if)# exit
+nexus1(config)# 
+nexus1(config)# int loopback 0
+nexus1(config-if)# ip add 10.10.10.l10/32
+                                   ^
+% Invalid ip address at '^' marker.
+nexus1(config-if)# ip router ospf 10 area 0
+nexus1(config-if)# ip add 10.10.10.10/32
+nexus1(config-if)# exit
+nexus1(config)# vlan 50
+nexus1(config-vlan)# vn-segment 5000
+nexus1(config-vlan)# exit
+Warning: Enable double-wide arp-ether tcam carving if igmp snooping/Hsrp over vxlan is enabled. Ignore if tcam carving is already configured.
+nexus1(config)# int e1/5-6
+nexus1(config-if-range)# sitchport
+                            ^
+% Invalid command at '^' marker.
+nexus1(config-if-range)# switchport
+nexus1(config-if-range)# switchport access vlan 50
+nexus1(config-if-range)# exit
+nexus1(config)# interface nve
+                             ^
+Invalid command (incomplete interface) at '^' marker.
+nexus1(config)# interface nve 1
+nexus1(config-if-nve)# no shut
+nexus1(config-if-nve)# source-interface loopback 0
+nexus1(config-if-nve)# member vni 5000
+nexus1(config-if-nve-vni)# ingress-replication protocol static 
+nexus1(config-if-nve-vni-ingr-rep)# peer-ip 20.20.20.20
+nexus1(config-if-nve-vni-ingr-rep)# exit
+nexus1(config-if-nve-vni)# 
+nexus1(config-if-nve-vni)# copy run start
+[########################################] 100%
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+nexus1(config-if-nve-vni)# exit
+nexus1(config-if-nve)# 
+nexus1(config-if-nve)# end
+nexus1# 
+nexus1# ping 20.20.20.20
+PING 20.20.20.20 (20.20.20.20): 56 data bytes
+64 bytes from 20.20.20.20: icmp_seq=0 ttl=254 time=5.272 ms
+64 bytes from 20.20.20.20: icmp_seq=1 ttl=254 time=2.615 ms
+64 bytes from 20.20.20.20: icmp_seq=2 ttl=254 time=1.469 ms
+64 bytes from 20.20.20.20: icmp_seq=3 ttl=254 time=1.856 ms
+64 bytes from 20.20.20.20: icmp_seq=4 ttl=254 time=1.483 ms
+
+--- 20.20.20.20 ping statistics ---
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min/avg/max = 1.469/2.539/5.272 ms
+nexus1# conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+nexus1(config)# int loopback 11
+nexus1(config-if)# ip add 11.11.11.11/32
+nexus1(config-if)# ip router ospf 10 area 0
+nexus1(config-if)# int lo 22
+nexus1(config-if)# ip add 22.22.22.22/32
+nexus1(config-if)# ip router ospf 10 area 4
+nexus1(config-if)# int lo 33
+nexus1(config-if)# ip add 33.33.33.33/32
+nexus1(config-if)# end
+nexus1# rollback running-config checkpoint bagoito
+ADVISORY: Rollback operation started...
+Modifying running configuration from another VSH terminal in parallel
+is not recommended, as this may lead to Rollback failure.
+
+Collecting Running-Config
+Generating Rollback patch for switch profile
+Rollback Patch is Empty
+Collecting Running-Config
+Generating Rollback Patch
+Executing Rollback Patch 
+During CR operation,will retain L3 configuration
+when vrf member change on interface
+2023 Feb 18 05:33:56 nexus1 %$ VDC-1 %$ %USER-2-SYSTEM_MSG: The Primary IP address of the NVE source interface has been modified without shutting down the NVE interface. It may result in unexpected behavior in VxLAN.  - nve
+2023 Feb 18 05:33:57 nexus1 %$ VDC-1 %$ eltm: Warning: 'feature nv overlay' has been disabled.Please remove below vxlan related cmds if configured. 'system nve ipmc global index-size default' 'system vlan nve-overlay id <vlanId>' 
+
+
+
+
+.Generating Running-config for verification
+Generating Rollback Patch
+
+Rollback completed successfully.
+
+NXOSa# 
+NXOSa# 
+NXOSa# 
+NXOSa# 
+NXOSa# rollback running-config checkpoint vxlanbasic
+                                          ^
+% Invalid command at '^' marker.
+NXOSa# 

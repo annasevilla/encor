@@ -1,0 +1,503 @@
+starting statd: done
+exit code: 1
+Not Micron SSD...
+Not Micron SSD...
+Installing local RPMS
+Patch Repository Setup completed successfully
+Creating /dev/mcelog
+Starting mcelog daemon
+INIT: Entering runlevel: 3
+Running S93thirdparty-script...
+
+done
+Netbroker support IS present in the kernel.
+done
+Disabling cisco netbroker hooks ... done
+Skipping EMON in vmachine...
+Executing Prune clis.
+ethernet switching mode Sat Feb 18 04:05:44 UTC 2023
+Feb 18 04:05:46 %FW_APP-2-FIRMWARE_IMAGE_LOAD_SUCCESS No Firmware needed for Non SR card.
+2023 Feb 18 04:05:50 NSOXb %$ VDC-1 %$  %USER-2-SYSTEM_MSG: <<%USBHSD-2-MOUNT>> logflash: online  - usbhsd
+2023 Feb 18 04:05:51 NSOXb %$ VDC-1 %$  %DAEMON-2-SYSTEM_MSG: <<%ASCII-CFG-2-CONF_CONTROL>> Binary restore - ascii-cfg[30014]
+2023 Feb 18 04:05:53 NSOXb %$ VDC-1 %$ netstack: Registration with cli server complete
+2023 Feb 18 04:06:04 NSOXb %$ VDC-1 %$ %USER-1-SYSTEM_MSG: NXOS RPMs have been tampered in the booted image. Verify validity of the image. Remove tampered rpms from the device. Check /tmp/rpm.remove.list. - root
+2023 Feb 18 04:06:13 NSOXb %$ VDC-1 %$ %USER-2-SYSTEM_MSG: ssnmgr_app_init called on ssnmgr up - aclmgr
+2023 Feb 18 04:06:20 NSOXb %$ VDC-1 %$ %ICAM-2-LOGFLASH_NOT_AVAILABLE: iCAM storage: Logflash not available or not enough space. History data will not be persistent.
+2023 Feb 18 04:06:44 NSOXb %$ VDC-1 %$ %USER-0-SYSTEM_MSG: end of default policer - copp
+2023 Feb 18 04:06:47 NSOXb %$ VDC-1 %$ %CARDCLIENT-2-FPGA_BOOT_GOLDEN: IOFPGA booted from Golden
+2023 Feb 18 04:06:47 NSOXb %$ VDC-1 %$ %PLATFORM-2-MOD_PRESENT: Detected the presence of Module 1
+2023 Feb 18 04:06:48 NSOXb %$ VDC-1 %$ %VDC_MGR-2-VDC_ONLINE: vdc 1 has come online 
+
+2023 Feb 18 04:06:51 NSOXb %$ VDC-1 %$ %PLATFORM-2-MOD_INSERTED: Module 1 inserted (Nexus 9000v 64 port Ethernet Module), 7 VNICs mapped
+
+User Access Verification
+NSOXb login: [  163.772977] pci_rescan_init: 
+[  163.773631] pci_rescan_proc_init: 
+2023 Feb 18 04:06:55 NSOXb %$ VDC-1 %$ %KERN-0-SYSTEM_MSG: [  163.772977] pci_rescan_init:  - kernel
+2023 Feb 18 04:06:55 NSOXb %$ VDC-1 %$ %KERN-0-SYSTEM_MSG: [  163.773631] pci_rescan_proc_init:  - kernel
+2023 Feb 18 04:07:21 NSOXb %$ VDC-1 %$ %PLATFORM-2-MOD_DETECT: Module 1 detected (Serial number 943JGCJHZER) Module-Type Nexus 9000v 64 port Ethernet Module Model N9K-X9364v
+2023 Feb 18 04:07:21 NSOXb %$ VDC-1 %$ %PLATFORM-2-MOD_PWRUP: Module 1 powered up (Serial number 943JGCJHZER)
+2023 Feb 18 04:08:02 NSOXb %$ VDC-1 %$ %ASCII-CFG-2-CONF_CONTROL: System ready
+
+User Access Verification
+NSOXb login: 
+User Access Verification
+NSOXb login: 
+User Access Verification
+NSOXb login: 
+User Access Verification
+NSOXb login: 
+User Access Verification
+NSOXb login: admin
+Password: 
+
+Cisco NX-OS Software
+Copyright (c) 2002-2021, Cisco Systems, Inc. All rights reserved.
+Nexus 9000v software ("Nexus 9000v Software") and related documentation,
+files or other reference materials ("Documentation") are
+the proprietary property and confidential information of Cisco
+Systems, Inc. ("Cisco") and are protected, without limitation,
+pursuant to United States and International copyright and trademark
+laws in the applicable jurisdiction which provide civil and criminal
+penalties for copying or distribution without Cisco's authorization.
+
+Any use or disclosure, in whole or in part, of the Nexus 9000v Software
+or Documentation to any third party for any purposes is expressly
+prohibited except as otherwise authorized by Cisco in writing.
+The copyrights to certain works contained herein are owned by other
+third parties and are used and distributed under license. Some parts
+of this software may be covered under the GNU Public License or the
+GNU Lesser General Public License. A copy of each such license is
+available at
+http://www.gnu.org/licenses/gpl.html and
+http://www.gnu.org/licenses/lgpl.html
+***************************************************************************
+*  Nexus 9000v is strictly limited to use for evaluation, demonstration   *
+*  and NX-OS education. Any use or disclosure, in whole or in part of     *
+*  the Nexus 9000v Software or Documentation to any third party for any   *
+*  purposes is expressly prohibited except as otherwise authorized by     *
+*  Cisco in writing.                                                      *
+***************************************************************************
+NSOXb# 
+NSOXb# 
+NSOXb# 
+NSOXb# 
+NSOXb# 
+NSOXb# 
+NSOXb# 
+NSOXb# 
+NSOXb# checkpoint bagoito
+Done
+NSOXb# 
+NSOXb# int loopback 1
+         ^
+% Invalid command at '^' marker.
+NSOXb# conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+NSOXb(config)# int loopback 1
+NSOXb(config-if)# ip add 1.1.1.1 255.255.255.255
+NSOXb(config-if)# int loopback 2
+NSOXb(config-if)# ip add 2.2.2.2 255.255.255.255
+NSOXb(config-if)# do sh ip int br
+
+IP Interface Status for VRF "default"(1)
+Interface            IP Address      Interface Status
+Lo1                  1.1.1.1         protocol-up/link-up/admin-up       
+Lo2                  2.2.2.2         protocol-up/link-up/admin-up       
+NSOXb(config-if)# end
+NSOXb# 
+NSOXb# checkpoint meronglb
+Done
+NSOXb# 
+NSOXb# rollback running-config checkpoint meronglb
+ADVISORY: Rollback operation started...
+Modifying running configuration from another VSH terminal in parallel
+is not recommended, as this may lead to Rollback failure.
+
+Collecting Running-Config
+Generating Rollback patch for switch profile
+Rollback Patch is Empty
+Collecting Running-Config
+Generating Rollback Patch
+Rollback Patch is Empty
+
+Rollback completed successfully.
+
+NSOXb# show checkpoint summary
+1) bagoito:
+Created by admin
+Created at Sat, 04:36:30 18 Feb 2023
+Size is 15,352 bytes
+User Checkpoint Summary
+--------------------------------------------------------------------------------
+Description: None
+
+2) meronglb:
+Created by admin
+Created at Sat, 04:37:39 18 Feb 2023
+Size is 15,474 bytes
+User Checkpoint Summary
+--------------------------------------------------------------------------------
+Description: None
+
+NSOXb# conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+NSOXb(config)# vlan 2
+NSOXb(config-vlan)# exit
+NSOXb(config)# router bgp
+                    ^
+% Invalid command at '^' marker.
+NSOXb(config)# router ospf
+                    ^
+% Invalid command at '^' marker.
+NSOXb(config)# int vlan 2
+                   ^
+Invalid interface format at '^' marker.
+NSOXb(config)# int vlan2
+                   ^
+Invalid interface format at '^' marker.
+NSOXb(config)# int vlan2
+                   ^
+Invalid interface format at '^' marker.
+NSOXb(config)# hostname NXOSB1
+NXOSB1(config)# copy run start
+[########################################] 100%
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+NXOSB1(config)# 
+NXOSB1(config)# 
+NXOSB1(config)# 
+NXOSB1(config)# 
+NXOSB1(config)# sh feature
+Feature Name          Instance  State   
+--------------------  --------  --------
+Flexlink               1          disabled
+analytics              1          disabled
+bash-shell             1          disabled
+bfd                    1          disabled
+bgp                    1          disabled
+bluez                  1          disabled
+bulkstat               1          disabled
+cable-management       1          disabled
+catena                 1          disabled
+container-tracker      1          disabled
+macsec                 1          disabled
+dhcp                   1          disabled
+dot1x                  1          disabled
+eigrp                  1          disabled
+eigrp                  2          disabled
+eigrp                  3          disabled
+eigrp                  4          disabled
+eigrp                  5          disabled
+eigrp                  6          disabled
+eigrp                  7          disabled
+eigrp                  8          disabled
+eigrp                  9          disabled
+eigrp                  10         disabled
+eigrp                  11         disabled
+eigrp                  12         disabled
+eigrp                  13         disabled
+eigrp                  14         disabled
+eigrp                  15         disabled
+eigrp                  16         disabled
+enm                    1          disabled
+epbr                   1          disabled
+eth-port-sec           1          disabled
+evb                    1          disabled
+evc                    1          disabled
+evmed                  1          disabled
+fabric-access          1          disabled
+fport-channel-trunk    1          disabled
+fsync_mgr              1          disabled
+grpc                   1          disabled
+hardware-telemetry     1          disabled
+hmm                    1          disabled
+hsrp_engine            1          disabled
+icam                   1          enabled 
+imp                    1          disabled
+interface-vlan         1          disabled
+intersight             1          disabled
+isis                   1          disabled
+isis                   2          disabled
+isis                   3          disabled
+isis                   4          disabled
+isis                   5          disabled
+isis                   6          disabled
+isis                   7          disabled
+isis                   8          disabled
+isis                   9          disabled
+isis                   10         disabled
+isis                   11         disabled
+isis                   12         disabled
+isis                   13         disabled
+isis                   14         disabled
+isis                   15         disabled
+isis                   16         disabled
+itd                    1          disabled
+l2vpn                  1          disabled
+l3vpn                  1          disabled
+lacp                   1          disabled
+ldap                   1          disabled
+ldp                    1          disabled
+license-smart          1          disabled
+license-smart-res      1          disabled
+lldp                   1          disabled
+mpls-evpn              1          disabled
+mpls_oam               1          disabled
+mpls_static            1          disabled
+msdp                   1          disabled
+mvpn                   1          disabled
+mvrp                   1          disabled
+nat                    1          disabled
+nbm                    1          disabled
+netconf                1          disabled
+ngmvpn                 1          disabled
+ngoam                  1          disabled
+npiv                   1          disabled
+nve                    1          disabled
+nxapi                  1          disabled
+nxsdk_app1             1          disabled
+nxsdk_app10            1          disabled
+nxsdk_app11            1          disabled
+nxsdk_app12            1          disabled
+nxsdk_app13            1          disabled
+nxsdk_app14            1          disabled
+nxsdk_app15            1          disabled
+nxsdk_app16            1          disabled
+nxsdk_app17            1          disabled
+nxsdk_app18            1          disabled
+nxsdk_app19            1          disabled
+nxsdk_app2             1          disabled
+nxsdk_app20            1          disabled
+nxsdk_app21            1          disabled
+nxsdk_app22            1          disabled
+nxsdk_app23            1          disabled
+nxsdk_app24            1          disabled
+nxsdk_app25            1          disabled
+nxsdk_app26            1          disabled
+nxsdk_app27            1          disabled
+nxsdk_app28            1          disabled
+nxsdk_app29            1          disabled
+nxsdk_app3             1          disabled
+nxsdk_app30            1          disabled
+nxsdk_app31            1          disabled
+nxsdk_app32            1          disabled
+nxsdk_app4             1          disabled
+nxsdk_app5             1          disabled
+nxsdk_app6             1          disabled
+nxsdk_app7             1          disabled
+nxsdk_app8             1          disabled
+nxsdk_app9             1          disabled
+nxsdk_mgr              1          disabled
+ofm                    1          disabled
+onep                   1          disabled
+openflow               1          disabled
+ospf                   1          disabled
+ospf                   2          disabled
+ospf                   3          disabled
+ospf                   4          disabled
+ospf                   5          disabled
+ospf                   6          disabled
+ospf                   7          disabled
+ospf                   8          disabled
+ospf                   9          disabled
+ospf                   10         disabled
+ospf                   11         disabled
+ospf                   12         disabled
+ospf                   13         disabled
+ospf                   14         disabled
+ospf                   15         disabled
+ospf                   16         disabled
+ospfv3                 1          disabled
+ospfv3                 2          disabled
+ospfv3                 3          disabled
+ospfv3                 4          disabled
+ospfv3                 5          disabled
+ospfv3                 6          disabled
+ospfv3                 7          disabled
+ospfv3                 8          disabled
+ospfv3                 9          disabled
+ospfv3                 10         disabled
+ospfv3                 11         disabled
+ospfv3                 12         disabled
+ospfv3                 13         disabled
+ospfv3                 14         disabled
+ospfv3                 15         disabled
+ospfv3                 16         disabled
+pbr                    1          disabled
+pim                    1          disabled
+pim6                   1          disabled
+plb                    1          disabled
+poe                    1          disabled
+private-vlan           1          disabled
+privilege              1          disabled
+ptp                    1          disabled
+restconf               1          disabled
+rip                    1          disabled
+rip                    2          disabled
+rip                    3          disabled
+rip                    4          disabled
+rise                   1          disabled
+scheduler              1          disabled
+scpServer              1          disabled
+segment-routing        1          disabled
+sflow                  1          disabled
+sftpServer             1          disabled
+sla_responder          1          disabled
+sla_sender             1          disabled
+sla_twamp              1          disabled
+smart-channel          1          disabled
+srte                   1          disabled
+srv6                   1          disabled
+sshServer              1          enabled 
+tacacs                 1          disabled
+telemetry              1          disabled
+telnetServer           1          disabled
+tun_enc_mgr            1          disabled
+tunnel                 1          disabled
+udld                   1          disabled
+vmfex                  1          disabled
+vmtracker              1          disabled
+vni                    1          disabled
+vnseg_vlan             1          disabled
+vpc                    1          disabled
+vrrp                   1          disabled
+vrrpv3                 1          disabled
+vtp                    1          disabled
+NXOSB1(config)#   feature OSPF
+NXOSB1(config)# 2023 Feb 18 04:46:02 NXOSB1 %$ VDC-1 %$ %LICMGR-2-LOG_LIC_MISSING_WARNING: A feature that requires LAN_ENTERPRISE_SERVICES_PKG license is not installed. System supports honor based licensing so feature will continue to be fully functional. Use 'show license usage <package-name>' to find features using missing license.
+
+NXOSB1(config)# FEATURE BGP
+NXOSB1(config)# hostname nexus 2
+                               ^
+% Invalid command at '^' marker.
+NXOSB1(config)# hostname nexus2
+nexus2(config)# end
+nexus2# 
+nexus2#  checkpoint bago
+Done
+nexus2# FEATURE INTERFACE-VLAN
+         ^
+% Invalid command at '^' marker.
+nexus2# conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+nexus2(config)# FEATURE INTERFACE-VLAN
+nexus2(config)# FEATURE NV OVERLAY
+nexus2(config)# feature vn-segment-vlan-based
+nexus2(config)# system jumbomtu 9216
+nexus2(config)# copy run start
+[########################################] 100%
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+nexus2(config)#  checkpoint vxlanbasic
+Done
+nexus2(config)# feature ospf
+nexus2(config)# feature nv overlay
+nexus2(config)# feature vn-segment-vlan-based 
+nexus2(config)# system jumbomtu 9216
+nexus2(config)# router ospf 10
+nexus2(config-router)# inte eth 1/1
+nexus2(config-if)# no switchport 
+nexus2(config-if)# ip add 100.1.1.2/30
+nexus2(config-if)# ip router ospf 10 area 0
+nexus2(config-if)# no shut
+nexus2(config-if)# int lo0
+nexus2(config-if)# ip add 20.20.20.20/32
+nexus2(config-if)# ip router ospf 10 area 0
+nexus2(config-if)# end
+nexus2# conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+nexus2(config)# vlan 50
+nexus2(config-vlan)# vn-segment 5000
+nexus2(config-vlan)# int eth 1/5-6
+Warning: Enable double-wide arp-ether tcam carving if igmp snooping/Hsrp over vxlan is enabled. Ignore if tcam carving is already configured.
+nexus2(config-if-range)# switchport 
+nexus2(config-if-range)# switchport acess vlan 50
+                                      ^
+% Invalid command at '^' marker.
+nexus2(config-if-range)# switchport access vlan 50
+nexus2(config-if-range)# no shut
+nexus2(config-if-range)# end
+nexus2# conf t
+Enter configuration commands, one per line. End with CNTL/Z.
+nexus2(config)# int nve 1
+nexus2(config-if-nve)# no shut
+nexus2(config-if-nve)# source-interface loopback 0
+nexus2(config-if-nve)# member vni 5000
+nexus2(config-if-nve-vni)# ingress-replication protocol static
+nexus2(config-if-nve-vni-ingr-rep)# perr-ip 10.10.10.10
+                                       ^
+% Invalid command at '^' marker.
+nexus2(config-if-nve-vni-ingr-rep)# peer-ip 10.10.10.10
+nexus2(config-if-nve-vni-ingr-rep)# exit
+nexus2(config-if-nve-vni)# ^C
+nexus2(config-if-nve-vni)# end
+nexus2# 
+nexus2# ping 10.10.10.10
+PING 10.10.10.10 (10.10.10.10): 56 data bytes
+64 bytes from 10.10.10.10: icmp_seq=0 ttl=254 time=4.292 ms
+64 bytes from 10.10.10.10: icmp_seq=1 ttl=254 time=1.812 ms
+64 bytes from 10.10.10.10: icmp_seq=2 ttl=254 time=2.63 ms
+64 bytes from 10.10.10.10: icmp_seq=3 ttl=254 time=2.255 ms
+64 bytes from 10.10.10.10: icmp_seq=4 ttl=254 time=2.634 ms
+
+--- 10.10.10.10 ping statistics ---
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min/avg/max = 1.812/2.724/4.292 ms
+nexus2# sh ip route ospf
+IP Route Table for VRF "default"
+'*' denotes best ucast next-hop
+'**' denotes best mcast next-hop
+'[x/y]' denotes [preference/metric]
+'%<string>' in via output denotes VRF <string>
+
+10.10.10.10/32, ubest/mbest: 1/0
+    *via 100.1.1.1, Eth1/1, [110/41], 00:13:54, ospf-10, intra
+11.11.11.11/32, ubest/mbest: 1/0
+    *via 100.1.1.1, Eth1/1, [110/41], 00:01:00, ospf-10, intra
+22.22.22.22/32, ubest/mbest: 1/0
+    *via 100.1.1.1, Eth1/1, [110/41], 00:00:36, ospf-10, inter
+
+nexus2# ping 11.11.11.11.
+% Invalid host/interface 11.11.11.11.
+nexus2# ping 11.11.11.11
+PING 11.11.11.11 (11.11.11.11): 56 data bytes
+64 bytes from 11.11.11.11: icmp_seq=0 ttl=254 time=3.684 ms
+64 bytes from 11.11.11.11: icmp_seq=1 ttl=254 time=3.758 ms
+64 bytes from 11.11.11.11: icmp_seq=2 ttl=254 time=2.091 ms
+64 bytes from 11.11.11.11: icmp_seq=3 ttl=254 time=1.993 ms
+64 bytes from 11.11.11.11: icmp_seq=4 ttl=254 time=1.966 ms
+
+
+--- 11.11.11.11 ping statistics ---
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min/avg/max = 1.966/2.698/3.758 ms
+nexus2# 
+nexus2# 
+nexus2# ping 22.22.22.22
+PING 22.22.22.22 (22.22.22.22): 56 data bytes
+64 bytes from 22.22.22.22: icmp_seq=0 ttl=254 time=2.998 ms
+64 bytes from 22.22.22.22: icmp_seq=1 ttl=254 time=2.34 ms
+64 bytes from 22.22.22.22: icmp_seq=2 ttl=254 time=2.254 ms
+64 bytes from 22.22.22.22: icmp_seq=3 ttl=254 time=2.079 ms
+64 bytes from 22.22.22.22: icmp_seq=4 ttl=254 time=2.573 ms
+
+--- 22.22.22.22 ping statistics ---
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min/avg/max = 2.079/2.448/2.998 ms
+nexus2# ping 22.22.22.22
+PING 22.22.22.22 (22.22.22.22): 56 data bytes
+ping: sendto 22.22.22.22 64 chars, No route to host
+Request 0 timed out
+ping: sendto 22.22.22.22 64 chars, No route to host
+Request 1 timed out
+ping: sendto 22.22.22.22 64 chars, No route to host
+Request 2 timed out
+ping: sendto 22.22.22.22 64 chars, No route to host
+Request 3 timed out
+ping: sendto 22.22.22.22 64 chars, No route to host
+Request 4 timed out
+
+--- 22.22.22.22 ping statistics ---
+5 packets transmitted, 0 packets received, 100.00% packet loss
+nexus2# 
